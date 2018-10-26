@@ -6,6 +6,7 @@
 package Telas;
 
 import Telas.Cadastros.CadastroUsuarioConta;
+import Utils.UtilFile;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,6 +20,12 @@ public class LoginFrame extends javax.swing.JFrame {
      */
     public LoginFrame() {
         initComponents();
+
+        String usuario = UtilFile.lerArquivo(UtilFile.USER);
+
+        if (usuario != null && !usuario.trim().isEmpty()) {
+            jTxtLogin.setText(usuario);
+        }
     }
 
     /**
@@ -123,17 +130,18 @@ public class LoginFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEntrarActionPerformed
-       
+
         String login = jTxtLogin.getText();
         String senha = jTxtSenha.getText();
-        
-        if (login.equals("a") && senha.equals("b")){
-            this.dispose();
+
+        if ((login.equals("darlan") || login.equals("welliton") || login.equals("jose")) && senha.equals("b")) {
+            UtilFile.gravarArquivo(UtilFile.USER, login);
+            this.dispose();            
             new PrincipalFrame().setVisible(true);
         } else {
             JOptionPane.showMessageDialog(null, "Login ou senha inválidos");
         }
-        
+
     }//GEN-LAST:event_jBtnEntrarActionPerformed
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked

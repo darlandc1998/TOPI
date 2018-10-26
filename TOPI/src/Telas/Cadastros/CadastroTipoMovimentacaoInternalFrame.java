@@ -5,9 +5,9 @@
  */
 package Telas.Cadastros;
 
-import Acoes.CadastroTipoMovimentacaoAction;
-import Acoes.CadastroUsuarioAction;
+import Acoes.Cadastro.CadastroTipoMovimentacaoAction;
 import Modelos.TipoMovimentacao;
+import Utils.UtilLog;
 import java.awt.Container;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
@@ -32,6 +32,7 @@ public class CadastroTipoMovimentacaoInternalFrame extends javax.swing.JInternal
         
         jBtnSalvar.addActionListener(tipoMovimentacaoAction);
         jBtnSalvar.setActionCommand(CadastroTipoMovimentacaoAction.COD_SALVAR_TIPO_MOVIMENTACAO);
+        UtilLog.escreverLog("abriu tela do cadastro tipo de movimentação");
     }
    
     public TipoMovimentacao getObject(){

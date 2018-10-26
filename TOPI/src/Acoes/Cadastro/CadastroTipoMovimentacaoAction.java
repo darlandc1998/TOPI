@@ -1,11 +1,11 @@
 
-package Acoes;
+package Acoes.Cadastro;
 
 import Modelos.TipoMovimentacao;
 import Telas.Cadastros.CadastroTipoMovimentacaoInternalFrame;
+import Utils.UtilLog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 
 public class CadastroTipoMovimentacaoAction implements ActionListener {
@@ -32,6 +32,7 @@ public class CadastroTipoMovimentacaoAction implements ActionListener {
                 System.out.println("Tipo Movimentação = "+tipoMovimentacao.toString());
                 tipoMovimentacaoInternalFrame.resetFields();
                 JOptionPane.showMessageDialog(null,"Tipo de movimentação inserida com sucesso!");
+                UtilLog.escreverLog("salvou tipo de movimentação");
                 break;
         }
     
