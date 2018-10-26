@@ -1,11 +1,11 @@
 
-package Acoes;
+package Acoes.Cadastro;
 
 import Modelos.Movimentacao;
 import Telas.Cadastros.CadastroMovimentacaoInternalFrame;
+import Utils.UtilLog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 
 
@@ -23,7 +23,7 @@ public class CadastroMovimentacaoAction implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
        String action = e.getActionCommand();
-        Movimentacao movimentacao = movimentacaoInternalFrame.getObject();
+       Movimentacao movimentacao = movimentacaoInternalFrame.getObject();
        
         if (movimentacao == null){
             return;
@@ -34,6 +34,7 @@ public class CadastroMovimentacaoAction implements ActionListener{
                 System.out.println("Movimentação = "+movimentacao.toString());
                 movimentacaoInternalFrame.resetFiels();
                 JOptionPane.showMessageDialog(null,"Movimentação inserida com sucesso!");
+                UtilLog.escreverLog("salvou movimentação");
                 break;
         }
     }

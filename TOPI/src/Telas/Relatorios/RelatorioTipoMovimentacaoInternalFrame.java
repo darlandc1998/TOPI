@@ -1,5 +1,8 @@
 package Telas.Relatorios;
 
+import Acoes.Relatorio.RelatorioMovimentacaoAction;
+import Acoes.Relatorio.RelatorioTipoMovimentacaoAction;
+import Utils.UtilLog;
 import java.awt.Container;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
@@ -7,7 +10,10 @@ import javax.swing.plaf.basic.BasicInternalFrameUI;
 public class RelatorioTipoMovimentacaoInternalFrame extends javax.swing.JInternalFrame {
 
     
-    public RelatorioTipoMovimentacaoInternalFrame() {        
+    public RelatorioTipoMovimentacaoInternalFrame() {  
+        
+        RelatorioTipoMovimentacaoAction relatorioTipoMovimentacaoAction = new RelatorioTipoMovimentacaoAction(this);
+        
         setClosable(true);
         setIconifiable(false);
         setResizable(false);
@@ -18,7 +24,10 @@ public class RelatorioTipoMovimentacaoInternalFrame extends javax.swing.JInterna
         pane.getComponent(0).setVisible(false); 
         
         initComponents();
-       
+        
+        jBtnExcluir.addActionListener(relatorioTipoMovimentacaoAction);
+        jBtnExcluir.setActionCommand(RelatorioTipoMovimentacaoAction.COD_EXCLUIR_TIPO_MOVIMENTACAO);
+        UtilLog.escreverLog("abriu tela de relatório do tipo de movimentação");
     }
 
     

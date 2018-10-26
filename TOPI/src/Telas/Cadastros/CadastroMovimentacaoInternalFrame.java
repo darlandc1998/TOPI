@@ -5,11 +5,13 @@
  */
 package Telas.Cadastros;
 
-import Acoes.CadastroMovimentacaoAction;
+import Acoes.Cadastro.CadastroMovimentacaoAction;
 import Enums.EnumRepetirMovimentacao;
 import Modelos.Movimentacao;
+import Utils.UtilLog;
 import java.awt.Container;
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
@@ -40,6 +42,8 @@ public class CadastroMovimentacaoInternalFrame extends javax.swing.JInternalFram
         jBtnSalvar.setActionCommand(CadastroMovimentacaoAction.COD_SALVAR_MOVIMENTACAO);
         
         addMasks();
+        
+        UtilLog.escreverLog("abriu tela do cadastro movimentação");
     }
 
     public Movimentacao getObject(){
@@ -98,8 +102,8 @@ public class CadastroMovimentacaoInternalFrame extends javax.swing.JInternalFram
             jTxtValor.setFormatterFactory(new DefaultFormatterFactory ( formatter ));
             jTxtValor.setValue(0.00);
             
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (ParseException e) {
+            UtilLog.escreverLog(e.toString());
         }
 
     }

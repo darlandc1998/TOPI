@@ -1,11 +1,14 @@
 package Telas.Cadastros;
 
+import Utils.UtilLog;
+
 
 public class CadastroUsuarioConta extends javax.swing.JFrame {
 
    
     public CadastroUsuarioConta() {
         initComponents();
+        UtilLog.escreverLog("entrou na tela de cadastro da conta do usuario");
     }
 
     @SuppressWarnings("unchecked")

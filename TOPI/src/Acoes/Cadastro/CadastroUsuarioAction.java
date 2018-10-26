@@ -1,7 +1,8 @@
-package Acoes;
+package Acoes.Cadastro;
 
 import Modelos.Usuario;
 import Telas.Cadastros.CadastroUsuarioInternalFrame;
+import Utils.UtilLog;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
@@ -31,6 +32,7 @@ public class CadastroUsuarioAction implements ActionListener {
                 System.out.println("Cliente = " + cliente.toString());
                 clienteFrame.resetFields();
                 JOptionPane.showMessageDialog(null,"Informações inseridas com sucesso!");
+                UtilLog.escreverLog("salvou usuário");
                 break;
         }
 

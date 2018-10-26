@@ -5,11 +5,13 @@ import Telas.Cadastros.CadastroTipoMovimentacaoInternalFrame;
 import Telas.Cadastros.CadastroMovimentacaoInternalFrame;
 import Telas.Relatorios.RelatorioMovimentacaoInternalFrame;
 import Telas.Relatorios.RelatorioTipoMovimentacaoInternalFrame;
+import Utils.UtilLog;
 
 public class PrincipalFrame extends javax.swing.JFrame {
 
     public PrincipalFrame() {
         initComponents();
+        UtilLog.escreverLog("entrou no sistema");
     }
 
     @SuppressWarnings("unchecked")
@@ -27,6 +29,7 @@ public class PrincipalFrame extends javax.swing.JFrame {
         jMnPerfil = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Agenda");
         setAlwaysOnTop(true);
         setResizable(false);
 

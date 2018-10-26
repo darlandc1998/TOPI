@@ -1,10 +1,12 @@
 package Telas.Cadastros;
 
-import Acoes.CadastroUsuarioAction;
+import Acoes.Cadastro.CadastroUsuarioAction;
 import Modelos.Usuario;
+import Utils.UtilLog;
 import java.awt.Container;
 import java.awt.Dialog;
 import java.text.DecimalFormat;
+import java.text.ParseException;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
@@ -31,6 +33,8 @@ public class CadastroUsuarioInternalFrame extends javax.swing.JInternalFrame {
         jBtnSalvar.setActionCommand(CadastroUsuarioAction.COD_SALVAR_CLIENTE);// Salvar Usuario
 
         addMasks();
+        
+        UtilLog.escreverLog("abriu tela do cadastro usuário");
     }
 
     @SuppressWarnings("unchecked")
@@ -287,8 +291,8 @@ public class CadastroUsuarioInternalFrame extends javax.swing.JInternalFrame {
             formatter.setAllowsInvalid(false);
             jTxtRendaMensal.setFormatterFactory(new DefaultFormatterFactory(formatter));
             jTxtRendaMensal.setValue(0.00);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (ParseException e) {
+            UtilLog.escreverLog(e.toString());
         }
 
     }
