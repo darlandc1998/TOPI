@@ -292,7 +292,7 @@ public class CadastroUsuarioInternalFrame extends javax.swing.JInternalFrame {
             jTxtRendaMensal.setFormatterFactory(new DefaultFormatterFactory(formatter));
             jTxtRendaMensal.setValue(0.00);
         } catch (ParseException e) {
-            UtilLog.escreverLog(e.toString());
+            UtilLog.escreverExcecao(e);
         }
 
     }

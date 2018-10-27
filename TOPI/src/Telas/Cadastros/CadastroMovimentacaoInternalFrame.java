@@ -10,6 +10,7 @@ import Enums.EnumRepetirMovimentacao;
 import Modelos.Movimentacao;
 import Utils.UtilLog;
 import java.awt.Container;
+import java.io.PrintWriter;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.Date;
@@ -103,7 +104,7 @@ public class CadastroMovimentacaoInternalFrame extends javax.swing.JInternalFram
             jTxtValor.setValue(0.00);
             
         } catch (ParseException e) {
-            UtilLog.escreverLog(e.toString());
+            UtilLog.escreverExcecao(e);
         }
 
     }
