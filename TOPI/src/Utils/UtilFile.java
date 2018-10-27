@@ -10,7 +10,7 @@ import java.io.IOException;
 
 public class UtilFile {
     
-    private static final String PATH = "/home/darlan/Documentos/Faculdade/5ª Fase/Tópicos Especiais I/TAB - TOPI/Arquivos/";
+    public static final String PATH = "/home/darlan/Documentos/Faculdade/5ª Fase/Tópicos Especiais I/TAB - TOPI/Arquivos/";
     public static final String LOG = "log.txt";
     public static final String USER = "usuario.txt";
     
