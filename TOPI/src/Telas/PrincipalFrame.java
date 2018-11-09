@@ -1,5 +1,5 @@
-package Telas;
-
+package Telas;//GEN-FIRST:event_jMnCadastroTipoMovimentacaoMouseClicked
+//GEN-LAST:event_jMnCadastroTipoMovimentacaoMouseClicked
 import Telas.Cadastros.CadastroUsuarioInternalFrame;
 import Telas.Cadastros.CadastroTipoMovimentacaoInternalFrame;
 import Telas.Cadastros.CadastroMovimentacaoInternalFrame;
@@ -15,7 +15,7 @@ public class PrincipalFrame extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
         jDesktopPane = new javax.swing.JDesktopPane();
@@ -127,43 +127,43 @@ public class PrincipalFrame extends javax.swing.JFrame {
 
         pack();
         setLocationRelativeTo(null);
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
-    private void jMnCadastrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnCadastrosActionPerformed
+    private void jMnCadastrosActionPerformed(java.awt.event.ActionEvent evt) {                                             
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMnCadastrosActionPerformed
+    }                                            
 
-    private void jMnCadastrosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMnCadastrosMouseClicked
+    private void jMnCadastrosMouseClicked(java.awt.event.MouseEvent evt) {                                          
        
-    }//GEN-LAST:event_jMnCadastrosMouseClicked
+    }                                         
 
-    private void jMnCadastroTipoMovimentacaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMnCadastroTipoMovimentacaoMouseClicked
+    private void jMnCadastroTipoMovimentacaoMouseClicked(java.awt.event.MouseEvent evt) {                                                         
 
-    }//GEN-LAST:event_jMnCadastroTipoMovimentacaoMouseClicked
+    }                                                        
 
-    private void jMnCadastroTipoMovimentacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnCadastroTipoMovimentacaoActionPerformed
+    private void jMnCadastroTipoMovimentacaoActionPerformed(java.awt.event.ActionEvent evt) {                                                            
         openInternalFrameCadastroTipoMovimentacao();
-    }//GEN-LAST:event_jMnCadastroTipoMovimentacaoActionPerformed
+    }                                                           
 
-    private void jMnMovimentacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnMovimentacaoActionPerformed
+    private void jMnMovimentacaoActionPerformed(java.awt.event.ActionEvent evt) {                                                
        openInternalFrameCadastroMovimentacao();
-    }//GEN-LAST:event_jMnMovimentacaoActionPerformed
+    }                                               
 
-    private void jMnRelatorioMovimentacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnRelatorioMovimentacaoActionPerformed
+    private void jMnRelatorioMovimentacaoActionPerformed(java.awt.event.ActionEvent evt) {                                                         
         openInternalFrameRelatorioMovimentacao();
-    }//GEN-LAST:event_jMnRelatorioMovimentacaoActionPerformed
+    }                                                        
 
-    private void jMnPerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMnPerfilMouseClicked
+    private void jMnPerfilMouseClicked(java.awt.event.MouseEvent evt) {                                       
         openInternalFrameCadastroUsuario();
-    }//GEN-LAST:event_jMnPerfilMouseClicked
+    }                                      
 
-    private void jMnTipoMovimentacaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMnTipoMovimentacaoMouseClicked
+    private void jMnTipoMovimentacaoMouseClicked(java.awt.event.MouseEvent evt) {                                                 
       openInternalFrameRelatorioTipoMovimentacao();
-    }//GEN-LAST:event_jMnTipoMovimentacaoMouseClicked
+    }                                                
 
-    private void jMnTipoMovimentacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnTipoMovimentacaoActionPerformed
+    private void jMnTipoMovimentacaoActionPerformed(java.awt.event.ActionEvent evt) {                                                    
         openInternalFrameRelatorioTipoMovimentacao();
-    }//GEN-LAST:event_jMnTipoMovimentacaoActionPerformed
+    }                                                   
 
     private void openInternalFrameRelatorioTipoMovimentacao(){
         RelatorioTipoMovimentacaoInternalFrame relatorioTipoMovimentacaoInternalFrame = new RelatorioTipoMovimentacaoInternalFrame();
@@ -195,7 +195,7 @@ public class PrincipalFrame extends javax.swing.JFrame {
         jDesktopPane.add(relatorioMovimentacaoInternalFrame);
     }
 
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+    // Variables declaration - do not modify                     
     private javax.swing.JDesktopPane jDesktopPane;
     private javax.swing.JMenuItem jMnCadastroTipoMovimentacao;
     private javax.swing.JMenu jMnCadastros;
@@ -205,5 +205,5 @@ public class PrincipalFrame extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMnRelatorioMovimentacao;
     private javax.swing.JMenuItem jMnTipoMovimentacao;
     private javax.swing.JMenuBar menu;
-    // End of variables declaration//GEN-END:variables
+    // End of variables declaration                   
 }
