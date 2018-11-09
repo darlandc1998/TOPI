@@ -20,8 +20,7 @@ public class UtilLog {
         try {
             fw = new FileWriter(UtilFile.PATH + UtilFile.LOG, true);
             e.printStackTrace(new PrintWriter(fw));
-            fw.flush();
-            fw.close();
+            fw.flush();           
         } catch (IOException ex) {
             Logger.getLogger(PrincipalFrame.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
