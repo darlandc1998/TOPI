@@ -1,6 +1,9 @@
 package Telas.Cadastros;
 
+import Acoes.Cadastro.CadastroLoginAction;
+import Modelos.Usuario;
 import Utils.UtilLog;
+import javax.swing.JOptionPane;
 
 
 public class CadastroUsuarioConta extends javax.swing.JFrame {
@@ -9,6 +12,33 @@ public class CadastroUsuarioConta extends javax.swing.JFrame {
     public CadastroUsuarioConta() {
         initComponents();
         UtilLog.escreverLog("entrou na tela de cadastro da conta do usuario");
+        
+        CadastroLoginAction loginAction = new CadastroLoginAction(this);
+        jBtnCadastrar.addActionListener(loginAction);
+        jBtnCadastrar.setActionCommand(CadastroLoginAction.COD_CADASTRAR_USUARIO);
+    }
+    
+    public Usuario getObject(){
+        
+        if (jTxtLogin.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Login obrigatório!");
+            return null;
+        }
+        
+        if (jTxtSenha.getText().isEmpty() || jTxtConfirmarSenha.getText().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Senhas obrigatórias!");
+            return null;
+        }
+        
+        if (!jTxtSenha.getText().equals(jTxtConfirmarSenha.getText())){
+            JOptionPane.showMessageDialog(null, "Senhas não conferem!");
+            return null;
+        }        
+        
+        Usuario usuario = new Usuario();
+        usuario.setLogin(jTxtLogin.getText());
+        usuario.setSenha(jTxtSenha.getText());
+        return usuario;
     }
 
     @SuppressWarnings("unchecked")
@@ -23,7 +53,7 @@ public class CadastroUsuarioConta extends javax.swing.JFrame {
         jTxtConfirmarSenha = new javax.swing.JPasswordField();
         jBtnCadastrar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registrar conta");
         setResizable(false);
 

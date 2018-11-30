@@ -10,6 +10,7 @@ public class Movimentacao {
     private Integer codigo;
     private String Descricao;
     private Integer cdTipoMovimentacao;
+    private Integer cdUsuario;
     private String situacao;
     private Date data;
     private Double valor;
@@ -71,6 +72,15 @@ public class Movimentacao {
         this.repetir = repetir;
     }
 
+    public Integer getCdUsuario() {
+        return cdUsuario;
+    }
+
+    public void setCdUsuario(Integer cdUsuario) {
+        this.cdUsuario = cdUsuario;
+    }
+
+    
     @Override
     public String toString() {
         return "Movimentacao{" + "codigo=" + codigo + ", Descricao=" + Descricao + ", cdTipoMovimentacao=" + cdTipoMovimentacao + ", situacao=" + situacao + ", data=" + data + ", valor=" + valor + ", repetir=" + repetir + '}';
