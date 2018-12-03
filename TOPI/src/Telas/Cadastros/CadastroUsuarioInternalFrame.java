@@ -1,13 +1,20 @@
 package Telas.Cadastros;
 
 import Acoes.Cadastro.CadastroUsuarioAction;
+import Dao.UsuarioDao;
 import Modelos.Usuario;
+import Utils.UtilConnection;
+import Utils.UtilFile;
 import Utils.UtilLog;
 import java.awt.Container;
-import java.awt.Dialog;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.text.DefaultFormatterFactory;
@@ -33,8 +40,8 @@ public class CadastroUsuarioInternalFrame extends javax.swing.JInternalFrame {
         jBtnSalvar.setActionCommand(CadastroUsuarioAction.COD_SALVAR_CLIENTE);// Salvar Usuario
 
         addMasks();
-        
         UtilLog.escreverLog("abriu tela do cadastro usuário");
+        carregarPerfil();
     }
 
     @SuppressWarnings("unchecked")
@@ -58,8 +65,6 @@ public class CadastroUsuarioInternalFrame extends javax.swing.JInternalFrame {
         jTxtCpf = new javax.swing.JTextField();
         jLblEstadoCivil = new javax.swing.JLabel();
         jCbxEstadoCivil = new javax.swing.JComboBox<>();
-        jLabel2 = new javax.swing.JLabel();
-        jCbxProfissao = new javax.swing.JComboBox<>();
         jLblRendaMensal = new javax.swing.JLabel();
         jTxtRendaMensal = new javax.swing.JFormattedTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -111,10 +116,6 @@ public class CadastroUsuarioInternalFrame extends javax.swing.JInternalFrame {
 
         jCbxEstadoCivil.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Solteiro", "Casado", "Divorciado" }));
 
-        jLabel2.setText("Profissão");
-
-        jCbxProfissao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Pedreiro", "Carpinteiro", "Programador" }));
-
         jLblRendaMensal.setText("Renda Mensal");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -129,23 +130,23 @@ public class CadastroUsuarioInternalFrame extends javax.swing.JInternalFrame {
                     .addComponent(jLblSobrenome)
                     .addComponent(jLblDataNascimento)
                     .addComponent(jLblCpf)
-                    .addComponent(jLblEstadoCivil)
-                    .addComponent(jLblRendaMensal))
+                    .addComponent(jLblEstadoCivil))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jTxtEmail)
                     .addComponent(jTxtNomeCliente)
                     .addComponent(jTxtSobrenome)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jTxtRendaMensal)
-                            .addComponent(jCbxEstadoCivil, javax.swing.GroupLayout.Alignment.LEADING, 0, 157, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel2)
+                        .addComponent(jCbxEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jBtnSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jCbxProfissao, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLblRendaMensal)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTxtRendaMensal))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jBtnSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(8, 8, 8))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
@@ -158,7 +159,7 @@ public class CadastroUsuarioInternalFrame extends javax.swing.JInternalFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jRbnFeminino))
                             .addComponent(jTxtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 37, Short.MAX_VALUE)))
+                        .addGap(0, 38, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -188,17 +189,16 @@ public class CadastroUsuarioInternalFrame extends javax.swing.JInternalFrame {
                     .addComponent(jLblCpf)
                     .addComponent(jTxtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLblEstadoCivil)
-                    .addComponent(jCbxEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jCbxProfissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLblRendaMensal)
+                        .addComponent(jTxtRendaMensal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLblEstadoCivil)
+                        .addComponent(jCbxEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLblRendaMensal)
-                    .addComponent(jTxtRendaMensal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBtnSalvar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addComponent(jBtnSalvar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
                 .addComponent(jLabel1))
         );
 
@@ -263,8 +263,7 @@ public class CadastroUsuarioInternalFrame extends javax.swing.JInternalFrame {
         cliente.setDtNascimento(new Date(dtNascimento));
         cliente.setSexo(jRbnMasculino.isSelected() ? "M" : "F");
         cliente.setCpf(cpf);
-        cliente.setEstadoCivil(jCbxEstadoCivil.getItemAt(jCbxEstadoCivil.getSelectedIndex()));
-        cliente.setProfissao(jCbxProfissao.getItemAt(jCbxProfissao.getSelectedIndex()));
+        cliente.setEstadoCivil(jCbxEstadoCivil.getItemAt(jCbxEstadoCivil.getSelectedIndex()));        
         cliente.setRendaMensal(rendaMensal);
         return cliente;
     }
@@ -276,7 +275,6 @@ public class CadastroUsuarioInternalFrame extends javax.swing.JInternalFrame {
         jTxtDtNascimento.setText(null);
         jTxtCpf.setText(null);
         jCbxEstadoCivil.setSelectedIndex(0);
-        jCbxProfissao.setSelectedIndex(0);
         jTxtRendaMensal.setValue(0.00);
     }
 
@@ -296,14 +294,35 @@ public class CadastroUsuarioInternalFrame extends javax.swing.JInternalFrame {
         }
 
     }
+    
+    public void carregarPerfil(){
+        Connection conexao = UtilConnection.getConnection();
+        try {
+            UsuarioDao usuarioDao = new UsuarioDao(conexao);
+            Usuario usuario = usuarioDao.getObject(new Usuario(usuarioDao.getIdUserByEmail(UtilFile.lerArquivo(UtilFile.USER))));
+            jTxtNomeCliente.setText(usuario.getNome());
+            jTxtSobrenome.setText(usuario.getSobrenome());
+            jTxtEmail.setText(usuario.getEmail());
+            jTxtCpf.setText(usuario.getCpf());
+            jTxtDtNascimento.setText(new SimpleDateFormat("dd/MM/yyyy").format(usuario.getDtNascimento()));
+            jRbnMasculino.setSelected(usuario.getSexo().equals("M"));
+            jRbnFeminino.setSelected(usuario.getSexo().equals("F"));
+            jTxtRendaMensal.setText(usuario.getRendaMensal().toString());            
+        } catch (Exception e) {
+        } finally{
+            try {
+                conexao.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CadastroUsuarioInternalFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup groupSexo;
     private javax.swing.JButton jBtnSalvar;
     private javax.swing.JComboBox<String> jCbxEstadoCivil;
-    private javax.swing.JComboBox<String> jCbxProfissao;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLblCpf;
     private javax.swing.JLabel jLblDataNascimento;
     private javax.swing.JLabel jLblEmail;

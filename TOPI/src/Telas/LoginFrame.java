@@ -1,23 +1,15 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Telas;
 
+import Acoes.Cadastro.LoginAction;
+import Modelos.Usuario;
 import Telas.Cadastros.CadastroUsuarioConta;
 import Utils.UtilFile;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author comp8
- */
+
 public class LoginFrame extends javax.swing.JFrame {
 
-    /**
-     * Creates new form LoginFrame
-     */
+    
     public LoginFrame() {
         initComponents();
 
@@ -26,6 +18,28 @@ public class LoginFrame extends javax.swing.JFrame {
         if (usuario != null && !usuario.trim().isEmpty()) {
             jTxtLogin.setText(usuario);
         }
+        
+        LoginAction loginAction = new LoginAction(this);
+        jBtnEntrar.addActionListener(loginAction);
+        jBtnEntrar.setActionCommand(LoginAction.CD_LOGAR);
+        
+    }
+    
+    public Usuario getObject(){
+        String login = jTxtLogin.getText();
+        String senha = jTxtSenha.getText();
+        
+        if (login.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Informe um login");
+            return null;
+        }
+        
+        if (senha.isEmpty()){
+            JOptionPane.showMessageDialog(null, "Informe uma senha");
+            return null;
+        }
+        
+        return new Usuario(login,senha);
     }
 
     /**
@@ -131,21 +145,9 @@ public class LoginFrame extends javax.swing.JFrame {
 
     private void jBtnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnEntrarActionPerformed
 
-        String login = jTxtLogin.getText();
-        String senha = jTxtSenha.getText();
-
-        if ((login.equals("darlan") || login.equals("welliton") || login.equals("jose")) && senha.equals("b")) {
-            UtilFile.gravarArquivo(UtilFile.USER, login);
-            this.dispose();            
-            new PrincipalFrame().setVisible(true);
-        } else {
-            JOptionPane.showMessageDialog(null, "Login ou senha inválidos");
-        }
-
     }//GEN-LAST:event_jBtnEntrarActionPerformed
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
-        this.dispose();
         new CadastroUsuarioConta().setVisible(true);
     }//GEN-LAST:event_jLabel2MouseClicked
 

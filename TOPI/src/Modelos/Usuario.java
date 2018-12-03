@@ -13,9 +13,24 @@ public class Usuario {
     private String sexo;
     private String cpf;
     private String estadoCivil;
-    private String Profissao;
     private Double rendaMensal;
+    
+    private String login;
+    private String senha;
 
+    public Usuario() {
+    }
+
+    public Usuario(String login, String senha) {
+        this.login = login;
+        this.senha = senha;
+    }
+
+    public Usuario(Integer codigo) {
+        this.codigo = codigo;
+    }
+    
+    
     public Integer getCodigo() {
         return codigo;
     }
@@ -80,14 +95,7 @@ public class Usuario {
         this.estadoCivil = estadoCivil;
     }
 
-    public String getProfissao() {
-        return Profissao;
-    }
-
-    public void setProfissao(String Profissao) {
-        this.Profissao = Profissao;
-    }
-
+  
     public Double getRendaMensal() {
         return rendaMensal;
     }
@@ -96,11 +104,22 @@ public class Usuario {
         this.rendaMensal = rendaMensal;
     }
 
-    @Override
-    public String toString() {
-        return "Usuario{" + "codigo=" + codigo + ", nome=" + nome + ", sobrenome=" + sobrenome + ", email=" + email + ", dtNascimento=" + dtNascimento + ", sexo=" + sexo + ", cpf=" + cpf + ", estadoCivil=" + estadoCivil + ", Profissao=" + Profissao + ", rendaMensal=" + rendaMensal + '}';
+    public String getLogin() {
+        return login;
     }
-    
-    
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+   
     
 }
