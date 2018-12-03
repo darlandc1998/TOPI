@@ -6,14 +6,23 @@
 package Telas.Cadastros;
 
 import Acoes.Cadastro.CadastroMovimentacaoAction;
+import Dao.TipoMovimentacaoDao;
+import Dao.UsuarioDao;
 import Enums.EnumRepetirMovimentacao;
 import Modelos.Movimentacao;
+import Modelos.TipoMovimentacao;
+import Utils.UtilConnection;
+import Utils.UtilFile;
 import Utils.UtilLog;
 import java.awt.Container;
-import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.text.DefaultFormatterFactory;
@@ -22,7 +31,7 @@ import javax.swing.text.NumberFormatter;
 
 public class CadastroMovimentacaoInternalFrame extends javax.swing.JInternalFrame {
 
-    
+    private List<TipoMovimentacao> listTipoMovimentacoes;
    
     public CadastroMovimentacaoInternalFrame() {
         CadastroMovimentacaoAction movimentacaoInternalFrame = new CadastroMovimentacaoAction(this);
@@ -43,6 +52,7 @@ public class CadastroMovimentacaoInternalFrame extends javax.swing.JInternalFram
         jBtnSalvar.setActionCommand(CadastroMovimentacaoAction.COD_SALVAR_MOVIMENTACAO);
         
         addMasks();
+        addTipoMovimentacoes();
         
         UtilLog.escreverLog("abriu tela do cadastro movimentação");
     }
@@ -71,14 +81,14 @@ public class CadastroMovimentacaoInternalFrame extends javax.swing.JInternalFram
             return null;
         }
         
+        System.out.println("ListTipoMovimentação = "+getListTipoMovimentacoes().size() + " | "+jCbxTipoMovimentacao.getSelectedIndex());
         
         Movimentacao movimentacao = new Movimentacao();
         movimentacao.setValor(valor);
         movimentacao.setDescricao(descricao);
-        movimentacao.setCdTipoMovimentacao(1);
+        movimentacao.setCdTipoMovimentacao(getListTipoMovimentacoes().get(jCbxTipoMovimentacao.getSelectedIndex()).getCodigo());
         movimentacao.setData(new Date(data));
         movimentacao.setRepetir(EnumRepetirMovimentacao.values()[jCbxRepetir.getSelectedIndex()]);
-        //Tipo movimentação será pego dos cadastros, porém como não há dados reais, foi inserido alguns para teste.
         movimentacao.setSituacao(jCbxTipoMovimentacao.getItemAt(jCbxTipoMovimentacao.getSelectedIndex()));
         return movimentacao;
     }
@@ -109,6 +119,35 @@ public class CadastroMovimentacaoInternalFrame extends javax.swing.JInternalFram
 
     }
     
+    private void addTipoMovimentacoes(){
+        Connection conexao = UtilConnection.getConnection();
+        try {
+            TipoMovimentacaoDao tipoMovimentacaoDao = new TipoMovimentacaoDao(conexao);
+            UsuarioDao usuarioDao = new UsuarioDao(conexao);
+            setListTipoMovimentacoes(tipoMovimentacaoDao.getList("codigo_usuario = "+usuarioDao.getIdUserByEmail(UtilFile.lerArquivo(UtilFile.USER)),"descricao"));
+            getListTipoMovimentacoes().forEach((tipo) -> {
+                jCbxTipoMovimentacao.addItem(tipo.getDescricao());
+            });            
+        } catch (SQLException e) {
+            Logger.getLogger(CadastroTipoMovimentacaoInternalFrame.class.getName()).log(Level.SEVERE, null, e);
+        } finally{
+            try {
+                conexao.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(CadastroMovimentacaoInternalFrame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    public List<TipoMovimentacao> getListTipoMovimentacoes() {
+        return listTipoMovimentacoes;
+    }
+
+    public void setListTipoMovimentacoes(List<TipoMovimentacao> listTipoMovimentacoes) {
+        this.listTipoMovimentacoes = listTipoMovimentacoes;
+    }
+    
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -133,8 +172,6 @@ public class CadastroMovimentacaoInternalFrame extends javax.swing.JInternalFram
         setTitle("Movimentação");
 
         jLblDescricao.setText("Descrição");
-
-        jCbxTipoMovimentacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Alimentação", "Vale Transporte" }));
 
         jLblTipoMovimentacao.setText("Tipo");
 
