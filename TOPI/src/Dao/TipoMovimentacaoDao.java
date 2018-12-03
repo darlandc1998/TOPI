@@ -44,8 +44,15 @@ public class TipoMovimentacaoDao {
     }
     
     public List<TipoMovimentacao> getList() throws SQLException{
+        return getList(null, null);
+    }
+    
+    public List<TipoMovimentacao> getList(String pWhere, String pOrderBy) throws SQLException{
+        String where = pWhere != null ? " where " + pWhere : "";
+        String orderBy = pOrderBy != null ? " order by "+pOrderBy : "";
+        
         List<TipoMovimentacao> tipoMovimentacoes = new ArrayList<>();
-        PreparedStatement ps = conexao.prepareStatement("select * from tipo_movimentacao");
+        PreparedStatement ps = conexao.prepareStatement("select * from tipo_movimentacao "+where + orderBy);
         try (ResultSet rs = ps.executeQuery()) {
             while (rs.next()){
                 tipoMovimentacoes.add(new TipoMovimentacao(rs.getInt("codigo"),rs.getString("descricao"),rs.getString("observacao"), rs.getInt("codigo_usuario")));
