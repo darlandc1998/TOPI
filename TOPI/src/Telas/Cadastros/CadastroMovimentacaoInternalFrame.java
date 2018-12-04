@@ -81,15 +81,14 @@ public class CadastroMovimentacaoInternalFrame extends javax.swing.JInternalFram
             return null;
         }
         
-        System.out.println("ListTipoMovimentação = "+getListTipoMovimentacoes().size() + " | "+jCbxTipoMovimentacao.getSelectedIndex());
-        
+                
         Movimentacao movimentacao = new Movimentacao();
         movimentacao.setValor(valor);
         movimentacao.setDescricao(descricao);
         movimentacao.setCdTipoMovimentacao(getListTipoMovimentacoes().get(jCbxTipoMovimentacao.getSelectedIndex()).getCodigo());
         movimentacao.setData(new Date(data));
         movimentacao.setRepetir(EnumRepetirMovimentacao.values()[jCbxRepetir.getSelectedIndex()]);
-        movimentacao.setSituacao(jCbxTipoMovimentacao.getItemAt(jCbxTipoMovimentacao.getSelectedIndex()));
+        movimentacao.setSituacao(jRbnDespesa.isSelected() ? "D" : "R");
         return movimentacao;
     }
     
@@ -176,7 +175,7 @@ public class CadastroMovimentacaoInternalFrame extends javax.swing.JInternalFram
         jLblTipoMovimentacao.setText("Tipo");
 
         btnGroupSituacao.add(jRbnBeneficio);
-        jRbnBeneficio.setText("Benefício");
+        jRbnBeneficio.setText("Receita");
 
         btnGroupSituacao.add(jRbnDespesa);
         jRbnDespesa.setSelected(true);

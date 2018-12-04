@@ -1,35 +1,78 @@
 package Telas.Relatorios;
 
 import Acoes.Relatorio.RelatorioMovimentacaoAction;
+import Dao.MovimentacaoDao;
+import Dao.UsuarioDao;
+import Modelos.Movimentacao;
+import Utils.UtilConnection;
+import Utils.UtilDate;
+import Utils.UtilFile;
 import Utils.UtilLog;
+import Utils.UtilNumeric;
 import java.awt.Container;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
-
+import javax.swing.table.DefaultTableModel;
 
 public class RelatorioMovimentacaoInternalFrame extends javax.swing.JInternalFrame {
 
-  
+    private List<Movimentacao> listMovimentacoes;
+    
     public RelatorioMovimentacaoInternalFrame() {
-        
+
         RelatorioMovimentacaoAction relatorioMovimentacaoAction = new RelatorioMovimentacaoAction(this);
-        
+
         setClosable(true);
         setIconifiable(false);
         setResizable(false);
         setSize(100, 100);
-        
-        
+
         Container pane = ((BasicInternalFrameUI) this.getUI()).getNorthPane();
-        pane.getComponent(0).setVisible(false); 
-        
+        pane.getComponent(0).setVisible(false);
+
         initComponents();
-        
+
         jBtnExcluir.addActionListener(relatorioMovimentacaoAction);
-        jBtnExcluir.setActionCommand(RelatorioMovimentacaoAction.COD_EXCLUIR_MOVIMENTACAO);        
-        
+        jBtnExcluir.setActionCommand(RelatorioMovimentacaoAction.COD_EXCLUIR_MOVIMENTACAO);
+        popularTabela();
         UtilLog.escreverLog("abriu tela do relatório de movimentação");
     }
 
+    private void popularTabela() {
+        Connection conexao = UtilConnection.getConnection();
+        try {
+            DefaultTableModel tb = (DefaultTableModel) jTbMovimentacao.getModel();
+            MovimentacaoDao movimentacaoDao = new MovimentacaoDao(conexao);
+            UsuarioDao usuarioDao = new UsuarioDao(conexao);
+            
+            setListMovimentacoes(movimentacaoDao.getList("codigo_usuario = "+usuarioDao.getIdUserByEmail(UtilFile.lerArquivo(UtilFile.USER)),"data desc"));
+            
+            Double saldo = 0d;
+            
+            for (Movimentacao mov: getListMovimentacoes()){
+                tb.addRow(new Object[]{mov.getCdTipoMovimentacao(), mov.getSituacao().equals("D") ? "Despesa" : "Receita",mov.getDescricao(), UtilDate.getDateFormatted(mov.getData()), UtilNumeric.getValueFormattedMoney(mov.getValor())});
+                saldo = saldo + (mov.getSituacao().equals("D") ? (mov.getValor() * -1) : mov.getValor());
+            }
+            
+            jTxtSaldo.setText(UtilNumeric.getValueFormattedMoney(saldo));
+        } catch (SQLException e) {
+            Logger.getLogger(RelatorioMovimentacaoInternalFrame.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            
+        }
+    }
+
+    public List<Movimentacao> getListMovimentacoes() {
+        return listMovimentacoes;
+    }
+
+    public void setListMovimentacoes(List<Movimentacao> listMovimentacoes) {
+        this.listMovimentacoes = listMovimentacoes;
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -38,25 +81,21 @@ public class RelatorioMovimentacaoInternalFrame extends javax.swing.JInternalFra
         jScrollPane1 = new javax.swing.JScrollPane();
         jTbMovimentacao = new javax.swing.JTable();
         jLblSaldo = new javax.swing.JLabel();
-        JLblSaldo = new javax.swing.JLabel();
-        jBtnEditar = new javax.swing.JButton();
+        jTxtSaldo = new javax.swing.JLabel();
         jBtnExcluir = new javax.swing.JButton();
 
         setTitle("Relatório Movimentação");
 
         jTbMovimentacao.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Tipo", "Descrição", "Data", "Valor"
+                "Tipo", "Situação", "Descrição", "Data", "Valor"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, true, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -67,11 +106,7 @@ public class RelatorioMovimentacaoInternalFrame extends javax.swing.JInternalFra
 
         jLblSaldo.setText("Saldo: R$");
 
-        JLblSaldo.setText("125.000,00");
-
-        jBtnEditar.setBackground(java.awt.Color.lightGray);
-        jBtnEditar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/baseline_edit_black_18dp.png"))); // NOI18N
-        jBtnEditar.setText("Editar");
+        jTxtSaldo.setText("125.000,00");
 
         jBtnExcluir.setBackground(java.awt.Color.lightGray);
         jBtnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/baseline_delete_forever_black_18dp.png"))); // NOI18N
@@ -86,11 +121,9 @@ public class RelatorioMovimentacaoInternalFrame extends javax.swing.JInternalFra
                 .addContainerGap()
                 .addComponent(jLblSaldo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(JLblSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTxtSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jBtnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jBtnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -101,10 +134,8 @@ public class RelatorioMovimentacaoInternalFrame extends javax.swing.JInternalFra
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLblSaldo)
-                        .addComponent(JLblSaldo))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jBtnEditar)
-                        .addComponent(jBtnExcluir)))
+                        .addComponent(jTxtSaldo))
+                    .addComponent(jBtnExcluir))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
 
@@ -113,11 +144,10 @@ public class RelatorioMovimentacaoInternalFrame extends javax.swing.JInternalFra
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel JLblSaldo;
-    private javax.swing.JButton jBtnEditar;
     private javax.swing.JButton jBtnExcluir;
     private javax.swing.JLabel jLblSaldo;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTbMovimentacao;
+    private javax.swing.JLabel jTxtSaldo;
     // End of variables declaration//GEN-END:variables
 }

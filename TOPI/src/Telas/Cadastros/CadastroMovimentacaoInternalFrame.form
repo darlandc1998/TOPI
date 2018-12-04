@@ -140,7 +140,7 @@
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="btnGroupSituacao"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Benef&#xed;cio"/>
+        <Property name="text" type="java.lang.String" value="Receita"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JRadioButton" name="jRbnDespesa">
