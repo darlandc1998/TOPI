@@ -61,7 +61,7 @@ public class MovimentacaoDao {
         String where = pWhere != null ? " where "+pWhere : "";
         String orderBy = pOrderby != null ? " order by "+pOrderby : "";
         List<Movimentacao> movimentacoes = new ArrayList<>();
-        PreparedStatement ps = conexao.prepareStatement("select * from movimentacao "+where + orderBy);
+        PreparedStatement ps = conexao.prepareStatement("select movimentacao.*, tipo_movimentacao.descricao as descricao_tipo_movimentacao from movimentacao inner join tipo_movimentacao on (tipo_movimentacao.codigo = movimentacao.codigo_tipo_movimentacao) "+where + orderBy);
         try (ResultSet rs = ps.executeQuery()) {
             while (rs.next()){
                 Movimentacao movimentacao = new Movimentacao();
@@ -73,6 +73,7 @@ public class MovimentacaoDao {
                 movimentacao.setRepetir(EnumRepetirMovimentacao.ANUALMENTE);
                 movimentacao.setSituacao(rs.getString("situacao"));
                 movimentacao.setValor(rs.getDouble("valor"));
+                movimentacao.setTipoMovimentacaoDescricao(rs.getString("descricao_tipo_movimentacao"));
                 movimentacoes.add(movimentacao);
             }
         } finally {

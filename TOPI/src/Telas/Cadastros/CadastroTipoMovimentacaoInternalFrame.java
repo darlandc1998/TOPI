@@ -6,17 +6,32 @@
 package Telas.Cadastros;
 
 import Acoes.Cadastro.CadastroTipoMovimentacaoAction;
+import Dao.TipoMovimentacaoDao;
 import Modelos.TipoMovimentacao;
+import Utils.UtilConnection;
 import Utils.UtilLog;
 import java.awt.Container;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 
 public class CadastroTipoMovimentacaoInternalFrame extends javax.swing.JInternalFrame {
 
+    private Integer codigo;
    
-    public CadastroTipoMovimentacaoInternalFrame() {
-        
+    public CadastroTipoMovimentacaoInternalFrame(){
+        iniciar();
+    }
+    
+    public CadastroTipoMovimentacaoInternalFrame(Integer codigo) {
+        this.codigo = codigo;
+        iniciar();
+    }
+    
+    private void iniciar(){        
         CadastroTipoMovimentacaoAction tipoMovimentacaoAction = new CadastroTipoMovimentacaoAction(this);
         
         setClosable(true);
@@ -32,7 +47,18 @@ public class CadastroTipoMovimentacaoInternalFrame extends javax.swing.JInternal
         
         jBtnSalvar.addActionListener(tipoMovimentacaoAction);
         jBtnSalvar.setActionCommand(CadastroTipoMovimentacaoAction.COD_SALVAR_TIPO_MOVIMENTACAO);
+        
+        if (codigo != null){
+           try (Connection conexao = UtilConnection.getConnection()){
+               TipoMovimentacaoDao tipoMovimentacaoDao = new TipoMovimentacaoDao(conexao);
+               popularObjeto(tipoMovimentacaoDao.getObject(new TipoMovimentacao(codigo)));
+           } catch(SQLException ex){
+               Logger.getLogger(CadastroTipoMovimentacaoInternalFrame.class.getName()).log(Level.SEVERE, null, ex);
+           }
+        }
+        
         UtilLog.escreverLog("abriu tela do cadastro tipo de movimentação");
+        
     }
    
     public TipoMovimentacao getObject(){
@@ -51,6 +77,7 @@ public class CadastroTipoMovimentacaoInternalFrame extends javax.swing.JInternal
         }
         
         TipoMovimentacao tipoMovimentacao = new TipoMovimentacao();
+        tipoMovimentacao.setCodigo(codigo);
         tipoMovimentacao.setDescricao(descricao);
         tipoMovimentacao.setObservacao(observacao);
         return tipoMovimentacao;
@@ -59,6 +86,16 @@ public class CadastroTipoMovimentacaoInternalFrame extends javax.swing.JInternal
     public void resetFields(){
         jTxtDescricao.setText(null);
         jTxtObservacao.setText(null);
+    }
+    
+    private void popularObjeto(TipoMovimentacao tipoMovimentacao){
+        
+        if (tipoMovimentacao == null){
+            return;
+        }
+        
+        jTxtDescricao.setText(tipoMovimentacao.getDescricao());
+        jTxtObservacao.setText(tipoMovimentacao.getObservacao());
     }
     
     @SuppressWarnings("unchecked")
