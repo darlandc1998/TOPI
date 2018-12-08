@@ -66,7 +66,7 @@ public class CadastroUsuarioConta extends javax.swing.JFrame {
         jBtnCadastrar.setBackground(new java.awt.Color(0, 153, 102));
         jBtnCadastrar.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jBtnCadastrar.setForeground(new java.awt.Color(255, 255, 255));
-        jBtnCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/baseline_save_black_18dp.png"))); // NOI18N
+        jBtnCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/baseline_save_white_18dp.png"))); // NOI18N
         jBtnCadastrar.setText("Cadastrar");
         jBtnCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,9 +112,8 @@ public class CadastroUsuarioConta extends javax.swing.JFrame {
                         .addComponent(jLblLogin)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLblLoginObrigatorio))
-                    .addGroup(jPanelCadastroLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jTxtSenha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
-                        .addComponent(jTxtLogin, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(jTxtSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+                    .addComponent(jTxtLogin)
                     .addComponent(jTxtConfirmarSenha))
                 .addContainerGap(8, Short.MAX_VALUE))
         );

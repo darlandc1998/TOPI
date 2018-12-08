@@ -101,7 +101,7 @@ public class RelatorioMovimentacaoInternalFrame extends javax.swing.JInternalFra
         jBtnExcluir.setBackground(new java.awt.Color(204, 0, 0));
         jBtnExcluir.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jBtnExcluir.setForeground(new java.awt.Color(255, 255, 255));
-        jBtnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/baseline_delete_forever_black_18dp.png"))); // NOI18N
+        jBtnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/baseline_delete_forever_white_18dp.png"))); // NOI18N
         jBtnExcluir.setText("Excluir");
 
         jTxtSaldo.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
