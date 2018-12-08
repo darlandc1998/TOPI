@@ -120,7 +120,7 @@ public class CadastroTipoMovimentacaoInternalFrame extends javax.swing.JInternal
         jBtnSalvar.setBackground(new java.awt.Color(0, 153, 102));
         jBtnSalvar.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
         jBtnSalvar.setForeground(new java.awt.Color(255, 255, 255));
-        jBtnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/baseline_save_black_18dp.png"))); // NOI18N
+        jBtnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/baseline_save_white_18dp.png"))); // NOI18N
         jBtnSalvar.setText("Salvar");
 
         jLblObservacao.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N

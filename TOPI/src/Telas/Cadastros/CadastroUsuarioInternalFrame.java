@@ -87,7 +87,7 @@ public class CadastroUsuarioInternalFrame extends javax.swing.JInternalFrame {
 
         jBtnSalvar.setBackground(new java.awt.Color(0, 153, 102));
         jBtnSalvar.setForeground(new java.awt.Color(255, 255, 255));
-        jBtnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/baseline_save_black_18dp.png"))); // NOI18N
+        jBtnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/baseline_save_white_18dp.png"))); // NOI18N
         jBtnSalvar.setText("Salvar");
         jBtnSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
