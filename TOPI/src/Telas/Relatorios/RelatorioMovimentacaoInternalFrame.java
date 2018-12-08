@@ -9,6 +9,7 @@ import Utils.UtilDate;
 import Utils.UtilFile;
 import Utils.UtilLog;
 import Utils.UtilNumeric;
+import java.awt.Color;
 import java.awt.Container;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -51,15 +52,10 @@ public class RelatorioMovimentacaoInternalFrame extends javax.swing.JInternalFra
             UsuarioDao usuarioDao = new UsuarioDao(conexao);
             
             setListMovimentacoes(movimentacaoDao.getList("codigo_usuario = "+usuarioDao.getIdUserByEmail(UtilFile.lerArquivo(UtilFile.USER)),"data desc"));
-            
-            Double saldo = 0d;
-            
-            for (Movimentacao mov: getListMovimentacoes()){
+            getListMovimentacoes().forEach((mov) -> {
                 tb.addRow(new Object[]{mov.getCodigo(), mov.getTipoMovimentacaoDescricao(), mov.getSituacao().equals("D") ? "Despesa" : "Receita",mov.getDescricao(), UtilDate.getDateFormatted(mov.getData()), UtilNumeric.getValueFormattedMoney(mov.getValor())});
-                saldo = saldo + (mov.getSituacao().equals("D") ? (mov.getValor() * -1) : mov.getValor());
-            }
-            
-            jTxtSaldo.setText(UtilNumeric.getValueFormattedMoney(saldo));
+            });
+            calcularSaldo();
         } catch (SQLException e) {
             Logger.getLogger(RelatorioMovimentacaoInternalFrame.class.getName()).log(Level.SEVERE, null, e);
         } finally {
@@ -81,6 +77,15 @@ public class RelatorioMovimentacaoInternalFrame extends javax.swing.JInternalFra
     
     public TableModel getTableModel(){
         return jTbMovimentacao.getModel();
+    }
+    
+    public void calcularSaldo(){
+        Double saldo = 0d;
+        for (Movimentacao mov: getListMovimentacoes()){
+            saldo = saldo + (mov.getSituacao().equals("D") ? (mov.getValor() * -1) : mov.getValor());
+        }
+        jTxtSaldo.setText(UtilNumeric.getValueFormattedMoney(saldo));
+        jTxtSaldo.setForeground(saldo > 0 ? Color.green : Color.RED);        
     }
     
     @SuppressWarnings("unchecked")

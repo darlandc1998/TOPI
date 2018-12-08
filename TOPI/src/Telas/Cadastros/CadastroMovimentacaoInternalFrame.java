@@ -203,7 +203,7 @@ public class CadastroMovimentacaoInternalFrame extends javax.swing.JInternalFram
         jLblRepetir.setText("Repetir");
 
         jCbxRepetir.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
-        jCbxRepetir.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Diariamente", "Semanalmente", "Mensalmente", "Anualmente" }));
+        jCbxRepetir.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Não Repete", "Diariamente", "Semanalmente", "Mensalmente", "Anualmente" }));
 
         jBtnSalvar.setBackground(new java.awt.Color(0, 153, 102));
         jBtnSalvar.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N

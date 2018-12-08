@@ -1,9 +1,7 @@
 package Acoes.Relatorio;
 
 import Dao.MovimentacaoDao;
-import Dao.TipoMovimentacaoDao;
 import Modelos.Movimentacao;
-import Modelos.TipoMovimentacao;
 import Telas.Relatorios.RelatorioMovimentacaoInternalFrame;
 import Utils.UtilConnection;
 import java.awt.event.ActionEvent;
@@ -51,7 +49,7 @@ public class RelatorioMovimentacaoAction implements ActionListener {
                         this.relatorioMovimentacao.getListMovimentacoes().remove(movimentacao);
                         DefaultTableModel tb = (DefaultTableModel) this.relatorioMovimentacao.getTableModel();
                         tb.removeRow(row);
-
+                        this.relatorioMovimentacao.calcularSaldo();
                     } catch (SQLException e) {
                         Logger.getLogger(RelatorioMovimentacaoAction.class.getName()).log(Level.SEVERE, null, e);
                     }
