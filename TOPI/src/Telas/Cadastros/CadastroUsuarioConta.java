@@ -45,25 +45,27 @@ public class CadastroUsuarioConta extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanelCadastroLogin = new javax.swing.JPanel();
+        jBtnCadastrar = new javax.swing.JButton();
         jLblLogin = new javax.swing.JLabel();
         jTxtLogin = new javax.swing.JTextField();
         jLblSenha = new javax.swing.JLabel();
         jTxtSenha = new javax.swing.JPasswordField();
         jLblConfirmarSenha = new javax.swing.JLabel();
         jTxtConfirmarSenha = new javax.swing.JPasswordField();
-        jBtnCadastrar = new javax.swing.JButton();
+        jLblLoginObrigatorio = new javax.swing.JLabel();
+        jLblSenhaObrigatoria = new javax.swing.JLabel();
+        jLblConfirmarSenhaObrigatoria = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registrar conta");
         setResizable(false);
 
-        jLblLogin.setText("Login");
+        jPanelCadastroLogin.setBackground(new java.awt.Color(245, 245, 245));
 
-        jLblSenha.setText("Senha");
-
-        jLblConfirmarSenha.setText("Confirmar senha");
-
-        jBtnCadastrar.setBackground(java.awt.Color.lightGray);
+        jBtnCadastrar.setBackground(new java.awt.Color(0, 153, 102));
+        jBtnCadastrar.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        jBtnCadastrar.setForeground(new java.awt.Color(255, 255, 255));
         jBtnCadastrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/baseline_save_black_18dp.png"))); // NOI18N
         jBtnCadastrar.setText("Cadastrar");
         jBtnCadastrar.addActionListener(new java.awt.event.ActionListener() {
@@ -72,45 +74,89 @@ public class CadastroUsuarioConta extends javax.swing.JFrame {
             }
         });
 
+        jLblLogin.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jLblLogin.setText("Login");
+
+        jLblSenha.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jLblSenha.setText("Senha");
+
+        jLblConfirmarSenha.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jLblConfirmarSenha.setText("Confirmar senha");
+
+        jLblLoginObrigatorio.setForeground(new java.awt.Color(255, 0, 0));
+        jLblLoginObrigatorio.setText("*");
+
+        jLblSenhaObrigatoria.setForeground(new java.awt.Color(255, 0, 0));
+        jLblSenhaObrigatoria.setText("*");
+
+        jLblConfirmarSenhaObrigatoria.setForeground(new java.awt.Color(255, 0, 0));
+        jLblConfirmarSenhaObrigatoria.setText("*");
+
+        javax.swing.GroupLayout jPanelCadastroLoginLayout = new javax.swing.GroupLayout(jPanelCadastroLogin);
+        jPanelCadastroLogin.setLayout(jPanelCadastroLoginLayout);
+        jPanelCadastroLoginLayout.setHorizontalGroup(
+            jPanelCadastroLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelCadastroLoginLayout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addGroup(jPanelCadastroLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jBtnCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+                    .addGroup(jPanelCadastroLoginLayout.createSequentialGroup()
+                        .addComponent(jLblSenha)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLblSenhaObrigatoria))
+                    .addGroup(jPanelCadastroLoginLayout.createSequentialGroup()
+                        .addComponent(jLblConfirmarSenha)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLblConfirmarSenhaObrigatoria))
+                    .addGroup(jPanelCadastroLoginLayout.createSequentialGroup()
+                        .addComponent(jLblLogin)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLblLoginObrigatorio))
+                    .addGroup(jPanelCadastroLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jTxtSenha, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+                        .addComponent(jTxtLogin, javax.swing.GroupLayout.Alignment.LEADING))
+                    .addComponent(jTxtConfirmarSenha))
+                .addContainerGap(8, Short.MAX_VALUE))
+        );
+        jPanelCadastroLoginLayout.setVerticalGroup(
+            jPanelCadastroLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelCadastroLoginLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelCadastroLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLblLogin)
+                    .addComponent(jLblLoginObrigatorio))
+                .addGap(2, 2, 2)
+                .addComponent(jTxtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelCadastroLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLblSenha)
+                    .addComponent(jLblSenhaObrigatoria))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTxtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanelCadastroLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLblConfirmarSenha)
+                    .addComponent(jLblConfirmarSenhaObrigatoria))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTxtConfirmarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jBtnCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLblLogin)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTxtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jBtnCadastrar)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLblSenha)
-                            .addComponent(jLblConfirmarSenha))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTxtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTxtConfirmarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanelCadastroLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 6, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLblLogin)
-                    .addComponent(jTxtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLblSenha)
-                    .addComponent(jTxtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLblConfirmarSenha)
-                    .addComponent(jTxtConfirmarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jBtnCadastrar)
+                .addContainerGap()
+                .addComponent(jPanelCadastroLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -125,8 +171,12 @@ public class CadastroUsuarioConta extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnCadastrar;
     private javax.swing.JLabel jLblConfirmarSenha;
+    private javax.swing.JLabel jLblConfirmarSenhaObrigatoria;
     private javax.swing.JLabel jLblLogin;
+    private javax.swing.JLabel jLblLoginObrigatorio;
     private javax.swing.JLabel jLblSenha;
+    private javax.swing.JLabel jLblSenhaObrigatoria;
+    private javax.swing.JPanel jPanelCadastroLogin;
     private javax.swing.JPasswordField jTxtConfirmarSenha;
     private javax.swing.JTextField jTxtLogin;
     private javax.swing.JPasswordField jTxtSenha;

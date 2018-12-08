@@ -87,13 +87,28 @@ public class RelatorioMovimentacaoInternalFrame extends javax.swing.JInternalFra
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPnlMovimentacao = new javax.swing.JPanel();
+        jBtnExcluir = new javax.swing.JButton();
+        jTxtSaldo = new javax.swing.JLabel();
+        jLblSaldo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTbMovimentacao = new javax.swing.JTable();
-        jLblSaldo = new javax.swing.JLabel();
-        jTxtSaldo = new javax.swing.JLabel();
-        jBtnExcluir = new javax.swing.JButton();
 
         setTitle("Relatório Movimentação");
+
+        jPnlMovimentacao.setBackground(new java.awt.Color(245, 245, 245));
+
+        jBtnExcluir.setBackground(new java.awt.Color(204, 0, 0));
+        jBtnExcluir.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        jBtnExcluir.setForeground(new java.awt.Color(255, 255, 255));
+        jBtnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/baseline_delete_forever_black_18dp.png"))); // NOI18N
+        jBtnExcluir.setText("Excluir");
+
+        jTxtSaldo.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jTxtSaldo.setText("125.000,00");
+
+        jLblSaldo.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jLblSaldo.setText("Saldo: R$");
 
         jTbMovimentacao.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -113,20 +128,11 @@ public class RelatorioMovimentacaoInternalFrame extends javax.swing.JInternalFra
         });
         jScrollPane1.setViewportView(jTbMovimentacao);
 
-        jLblSaldo.setText("Saldo: R$");
-
-        jTxtSaldo.setText("125.000,00");
-
-        jBtnExcluir.setBackground(java.awt.Color.lightGray);
-        jBtnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/baseline_delete_forever_black_18dp.png"))); // NOI18N
-        jBtnExcluir.setText("Excluir");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
+        javax.swing.GroupLayout jPnlMovimentacaoLayout = new javax.swing.GroupLayout(jPnlMovimentacao);
+        jPnlMovimentacao.setLayout(jPnlMovimentacaoLayout);
+        jPnlMovimentacaoLayout.setHorizontalGroup(
+            jPnlMovimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnlMovimentacaoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLblSaldo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -134,18 +140,32 @@ public class RelatorioMovimentacaoInternalFrame extends javax.swing.JInternalFra
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jBtnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 532, Short.MAX_VALUE)
+        );
+        jPnlMovimentacaoLayout.setVerticalGroup(
+            jPnlMovimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnlMovimentacaoLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPnlMovimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jBtnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPnlMovimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLblSaldo)
+                        .addComponent(jTxtSaldo)))
+                .addContainerGap(14, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPnlMovimentacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLblSaldo)
-                        .addComponent(jTxtSaldo))
-                    .addComponent(jBtnExcluir))
-                .addContainerGap(20, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPnlMovimentacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -155,6 +175,7 @@ public class RelatorioMovimentacaoInternalFrame extends javax.swing.JInternalFra
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnExcluir;
     private javax.swing.JLabel jLblSaldo;
+    private javax.swing.JPanel jPnlMovimentacao;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTbMovimentacao;
     private javax.swing.JLabel jTxtSaldo;

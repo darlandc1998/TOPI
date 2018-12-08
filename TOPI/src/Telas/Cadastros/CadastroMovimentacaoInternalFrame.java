@@ -152,44 +152,62 @@ public class CadastroMovimentacaoInternalFrame extends javax.swing.JInternalFram
     private void initComponents() {
 
         btnGroupSituacao = new javax.swing.ButtonGroup();
+        jPnlMovimentacao = new javax.swing.JPanel();
         jLblDescricao = new javax.swing.JLabel();
         jTxtDescricao = new javax.swing.JTextField();
-        jCbxTipoMovimentacao = new javax.swing.JComboBox<>();
         jLblTipoMovimentacao = new javax.swing.JLabel();
-        jRbnBeneficio = new javax.swing.JRadioButton();
+        jCbxTipoMovimentacao = new javax.swing.JComboBox<>();
         jRbnDespesa = new javax.swing.JRadioButton();
-        jLblValor = new javax.swing.JLabel();
-        jCbxRepetir = new javax.swing.JComboBox<>();
-        jLblRepetir = new javax.swing.JLabel();
+        jRbnBeneficio = new javax.swing.JRadioButton();
         jLblData = new javax.swing.JLabel();
-        jBtnSalvar = new javax.swing.JButton();
         jTxtData = new javax.swing.JFormattedTextField();
+        jLblValor = new javax.swing.JLabel();
         jTxtValor = new javax.swing.JFormattedTextField();
+        jLblRepetir = new javax.swing.JLabel();
+        jCbxRepetir = new javax.swing.JComboBox<>();
+        jBtnSalvar = new javax.swing.JButton();
+        jLblDescricaoObrigatorio = new javax.swing.JLabel();
+        jLblTipoObrigatorio = new javax.swing.JLabel();
+        jLblValorObrigatorio = new javax.swing.JLabel();
+        jLblDataObrigatoria = new javax.swing.JLabel();
+        jLblRepetirObrigatorio = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(188, 51, 67));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         setTitle("Movimentação");
 
+        jPnlMovimentacao.setBackground(new java.awt.Color(245, 245, 245));
+
+        jLblDescricao.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jLblDescricao.setText("Descrição");
 
+        jLblTipoMovimentacao.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jLblTipoMovimentacao.setText("Tipo");
 
-        btnGroupSituacao.add(jRbnBeneficio);
-        jRbnBeneficio.setText("Receita");
+        jCbxTipoMovimentacao.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
 
         btnGroupSituacao.add(jRbnDespesa);
         jRbnDespesa.setSelected(true);
         jRbnDespesa.setText("Despesa");
 
-        jLblValor.setText("Valor");
+        btnGroupSituacao.add(jRbnBeneficio);
+        jRbnBeneficio.setText("Receita");
 
-        jCbxRepetir.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Diariamente", "Semanalmente", "Mensalmente", "Anualmente" }));
-
-        jLblRepetir.setText("Repetir");
-
+        jLblData.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jLblData.setText("Data");
 
-        jBtnSalvar.setBackground(java.awt.Color.lightGray);
+        jLblValor.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jLblValor.setText("Valor");
+
+        jLblRepetir.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jLblRepetir.setText("Repetir");
+
+        jCbxRepetir.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jCbxRepetir.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Diariamente", "Semanalmente", "Mensalmente", "Anualmente" }));
+
+        jBtnSalvar.setBackground(new java.awt.Color(0, 153, 102));
+        jBtnSalvar.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        jBtnSalvar.setForeground(new java.awt.Color(255, 255, 255));
         jBtnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/baseline_save_black_18dp.png"))); // NOI18N
         jBtnSalvar.setText("Salvar");
         jBtnSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -198,69 +216,109 @@ public class CadastroMovimentacaoInternalFrame extends javax.swing.JInternalFram
             }
         });
 
+        jLblDescricaoObrigatorio.setForeground(new java.awt.Color(255, 0, 0));
+        jLblDescricaoObrigatorio.setText("*");
+
+        jLblTipoObrigatorio.setForeground(new java.awt.Color(255, 0, 0));
+        jLblTipoObrigatorio.setText("*");
+
+        jLblValorObrigatorio.setForeground(new java.awt.Color(255, 0, 0));
+        jLblValorObrigatorio.setText("*");
+
+        jLblDataObrigatoria.setForeground(new java.awt.Color(255, 0, 0));
+        jLblDataObrigatoria.setText("*");
+
+        jLblRepetirObrigatorio.setForeground(new java.awt.Color(255, 0, 0));
+        jLblRepetirObrigatorio.setText("*");
+
+        javax.swing.GroupLayout jPnlMovimentacaoLayout = new javax.swing.GroupLayout(jPnlMovimentacao);
+        jPnlMovimentacao.setLayout(jPnlMovimentacaoLayout);
+        jPnlMovimentacaoLayout.setHorizontalGroup(
+            jPnlMovimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPnlMovimentacaoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPnlMovimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPnlMovimentacaoLayout.createSequentialGroup()
+                        .addComponent(jRbnDespesa)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jRbnBeneficio, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPnlMovimentacaoLayout.createSequentialGroup()
+                        .addComponent(jLblDescricao)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLblDescricaoObrigatorio))
+                    .addComponent(jTxtDescricao)
+                    .addComponent(jTxtValor)
+                    .addGroup(jPnlMovimentacaoLayout.createSequentialGroup()
+                        .addComponent(jLblValor)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLblValorObrigatorio))
+                    .addGroup(jPnlMovimentacaoLayout.createSequentialGroup()
+                        .addComponent(jLblRepetir)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLblRepetirObrigatorio))
+                    .addComponent(jCbxRepetir, 0, 304, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPnlMovimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPnlMovimentacaoLayout.createSequentialGroup()
+                        .addComponent(jLblTipoMovimentacao)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLblTipoObrigatorio))
+                    .addComponent(jCbxTipoMovimentacao, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPnlMovimentacaoLayout.createSequentialGroup()
+                        .addComponent(jLblData)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLblDataObrigatoria))
+                    .addComponent(jTxtData)
+                    .addComponent(jBtnSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+        jPnlMovimentacaoLayout.setVerticalGroup(
+            jPnlMovimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPnlMovimentacaoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPnlMovimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jRbnBeneficio)
+                    .addComponent(jRbnDespesa, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPnlMovimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLblDescricao)
+                    .addComponent(jLblTipoMovimentacao)
+                    .addComponent(jLblDescricaoObrigatorio)
+                    .addComponent(jLblTipoObrigatorio))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPnlMovimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTxtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCbxTipoMovimentacao, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPnlMovimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLblValor)
+                    .addComponent(jLblData)
+                    .addComponent(jLblValorObrigatorio)
+                    .addComponent(jLblDataObrigatoria))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPnlMovimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTxtValor, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTxtData, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPnlMovimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLblRepetir)
+                    .addComponent(jLblRepetirObrigatorio))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPnlMovimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jCbxRepetir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBtnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(28, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLblDescricao)
-                            .addComponent(jLblTipoMovimentacao))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTxtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 367, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jCbxTipoMovimentacao, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jRbnDespesa)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRbnBeneficio, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLblData)
-                            .addComponent(jLblRepetir))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jCbxRepetir, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTxtData))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLblValor)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jBtnSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTxtValor, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE))
-                        .addGap(9, 9, 9)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPnlMovimentacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLblDescricao)
-                    .addComponent(jTxtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCbxTipoMovimentacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLblTipoMovimentacao)
-                    .addComponent(jRbnDespesa)
-                    .addComponent(jRbnBeneficio))
-                .addGap(12, 12, 12)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLblData)
-                    .addComponent(jTxtData, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLblValor)
-                    .addComponent(jTxtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLblRepetir)
-                    .addComponent(jCbxRepetir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBtnSalvar))
-                .addContainerGap(32, Short.MAX_VALUE))
+            .addComponent(jPnlMovimentacao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -277,10 +335,16 @@ public class CadastroMovimentacaoInternalFrame extends javax.swing.JInternalFram
     private javax.swing.JComboBox<String> jCbxRepetir;
     private javax.swing.JComboBox<String> jCbxTipoMovimentacao;
     private javax.swing.JLabel jLblData;
+    private javax.swing.JLabel jLblDataObrigatoria;
     private javax.swing.JLabel jLblDescricao;
+    private javax.swing.JLabel jLblDescricaoObrigatorio;
     private javax.swing.JLabel jLblRepetir;
+    private javax.swing.JLabel jLblRepetirObrigatorio;
     private javax.swing.JLabel jLblTipoMovimentacao;
+    private javax.swing.JLabel jLblTipoObrigatorio;
     private javax.swing.JLabel jLblValor;
+    private javax.swing.JLabel jLblValorObrigatorio;
+    private javax.swing.JPanel jPnlMovimentacao;
     private javax.swing.JRadioButton jRbnBeneficio;
     private javax.swing.JRadioButton jRbnDespesa;
     private javax.swing.JFormattedTextField jTxtData;
