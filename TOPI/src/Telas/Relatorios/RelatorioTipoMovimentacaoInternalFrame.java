@@ -1,9 +1,12 @@
 package Telas.Relatorios;
 
 import Acoes.Relatorio.RelatorioTipoMovimentacaoAction;
+import Dao.MovimentacaoDao;
 import Dao.TipoMovimentacaoDao;
 import Dao.UsuarioDao;
+import Modelos.Movimentacao;
 import Modelos.TipoMovimentacao;
+import Telas.Cadastros.CadastroTipoMovimentacaoInternalFrame;
 import Utils.UtilConnection;
 import Utils.UtilFile;
 import Utils.UtilLog;
@@ -13,11 +16,13 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 
-public class RelatorioTipoMovimentacaoInternalFrame extends javax.swing.JInternalFrame {
+public class RelatorioTipoMovimentacaoInternalFrame extends javax.swing.JInternalFrame{
 
     private List<TipoMovimentacao> listTipoMovimentacoes;
     
@@ -50,7 +55,7 @@ public class RelatorioTipoMovimentacaoInternalFrame extends javax.swing.JInterna
             UsuarioDao usuarioDao = new UsuarioDao(conexao);
             setListTipoMovimentacoes(tipoMovimentacaoDao.getList("codigo_usuario = "+usuarioDao.getIdUserByEmail(UtilFile.lerArquivo(UtilFile.USER)),"descricao"));
             getListTipoMovimentacoes().forEach((tipo) -> {
-                tb.addRow(new Object[]{tipo.getDescricao(), tipo.getObservacao()});
+                tb.addRow(new Object[]{tipo.getCodigo(),tipo.getDescricao(), tipo.getObservacao()});
             });
         } catch (SQLException e) {
             Logger.getLogger(RelatorioTipoMovimentacaoInternalFrame.class.getName()).log(Level.SEVERE, null, e);
@@ -61,6 +66,14 @@ public class RelatorioTipoMovimentacaoInternalFrame extends javax.swing.JInterna
                 Logger.getLogger(RelatorioTipoMovimentacaoInternalFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
+    }
+    
+    public int getSelectedRow(){         
+        return jTbTipoMovimentacao.getSelectedRow();
+    }
+    
+    public TableModel getTableModel(){
+        return jTbTipoMovimentacao.getModel();
     }
 
     public List<TipoMovimentacao> getListTipoMovimentacoes() {
@@ -86,15 +99,20 @@ public class RelatorioTipoMovimentacaoInternalFrame extends javax.swing.JInterna
 
             },
             new String [] {
-                "Descrição", "Observação"
+                "Codigo", "Descrição", "Observação"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        jTbTipoMovimentacao.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTbTipoMovimentacaoMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(jTbTipoMovimentacao);
@@ -132,8 +150,15 @@ public class RelatorioTipoMovimentacaoInternalFrame extends javax.swing.JInterna
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnExcluirActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jBtnExcluirActionPerformed
+
+    private void jTbTipoMovimentacaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTbTipoMovimentacaoMouseClicked
+        if (evt.getClickCount() == 2){
+            this.dispose();
+            Integer codigo = (Integer) jTbTipoMovimentacao.getModel().getValueAt(jTbTipoMovimentacao.getSelectedRow(), 0);
+        }
+    }//GEN-LAST:event_jTbTipoMovimentacaoMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -15,7 +15,15 @@ public class Movimentacao {
     private Date data;
     private Double valor;
     private EnumRepetirMovimentacao repetir;
+    private String tipoMovimentacaoDescricao;
 
+    public Movimentacao() {
+    }
+
+    public Movimentacao(Integer codigo) {
+        this.codigo = codigo;
+    }
+    
     public Integer getCodigo() {
         return codigo;
     }
@@ -80,6 +88,13 @@ public class Movimentacao {
         this.cdUsuario = cdUsuario;
     }
 
+    public String getTipoMovimentacaoDescricao() {
+        return tipoMovimentacaoDescricao;
+    }
+
+    public void setTipoMovimentacaoDescricao(String tipoMovimentacaoDescricao) {
+        this.tipoMovimentacaoDescricao = tipoMovimentacaoDescricao;
+    }
     
     @Override
     public String toString() {

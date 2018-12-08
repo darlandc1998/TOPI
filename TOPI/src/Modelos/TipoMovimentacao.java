@@ -11,6 +11,10 @@ public class TipoMovimentacao {
     public TipoMovimentacao() {
     }
 
+    public TipoMovimentacao(Integer codigo) {
+        this.codigo = codigo;
+    }
+    
     public TipoMovimentacao(Integer codigo, String descricao, String observacao) {
         this.codigo = codigo;
         this.descricao = descricao;

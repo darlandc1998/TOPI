@@ -194,7 +194,7 @@ public class PrincipalFrame extends javax.swing.JFrame {
         relatorioMovimentacaoInternalFrame.setVisible(true);
         jDesktopPane.add(relatorioMovimentacaoInternalFrame);
     }
-
+    
     // Variables declaration - do not modify                     
     private javax.swing.JDesktopPane jDesktopPane;
     private javax.swing.JMenuItem jMnCadastroTipoMovimentacao;
