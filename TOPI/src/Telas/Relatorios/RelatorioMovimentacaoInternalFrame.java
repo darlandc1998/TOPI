@@ -17,6 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 public class RelatorioMovimentacaoInternalFrame extends javax.swing.JInternalFrame {
 
@@ -54,7 +55,7 @@ public class RelatorioMovimentacaoInternalFrame extends javax.swing.JInternalFra
             Double saldo = 0d;
             
             for (Movimentacao mov: getListMovimentacoes()){
-                tb.addRow(new Object[]{mov.getCdTipoMovimentacao(), mov.getSituacao().equals("D") ? "Despesa" : "Receita",mov.getDescricao(), UtilDate.getDateFormatted(mov.getData()), UtilNumeric.getValueFormattedMoney(mov.getValor())});
+                tb.addRow(new Object[]{mov.getCodigo(), mov.getTipoMovimentacaoDescricao(), mov.getSituacao().equals("D") ? "Despesa" : "Receita",mov.getDescricao(), UtilDate.getDateFormatted(mov.getData()), UtilNumeric.getValueFormattedMoney(mov.getValor())});
                 saldo = saldo + (mov.getSituacao().equals("D") ? (mov.getValor() * -1) : mov.getValor());
             }
             
@@ -74,6 +75,14 @@ public class RelatorioMovimentacaoInternalFrame extends javax.swing.JInternalFra
         this.listMovimentacoes = listMovimentacoes;
     }
     
+    public int getSelectedRow(){
+        return jTbMovimentacao.getSelectedRow();
+    }
+    
+    public TableModel getTableModel(){
+        return jTbMovimentacao.getModel();
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -91,11 +100,11 @@ public class RelatorioMovimentacaoInternalFrame extends javax.swing.JInternalFra
 
             },
             new String [] {
-                "Tipo", "Situação", "Descrição", "Data", "Valor"
+                "Codigo", "Tipo", "Situação", "Descrição", "Data", "Valor"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, false, false, false
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
