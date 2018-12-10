@@ -1,6 +1,7 @@
 package Dao;
 
 import Modelos.Usuario;
+import Utils.UtilPassword;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -19,7 +20,7 @@ public class UsuarioDao {
     public void createLogin(Usuario usuario) throws SQLException{
         try (PreparedStatement ps = conexao.prepareStatement("insert into usuario (login, senha) values (?,?)")) {
             ps.setString(1, usuario.getLogin());
-            ps.setString(2, usuario.getSenha());
+            ps.setString(2, UtilPassword.criptografarSenha(usuario.getSenha()));
             ps.executeUpdate();
         }
     }
@@ -35,7 +36,7 @@ public class UsuarioDao {
             ps.setString(7, usuario.getEstadoCivil());
             ps.setDouble(8, usuario.getRendaMensal());
             ps.setString(9, usuario.getLogin());
-            ps.setString(10, usuario.getSenha());
+            ps.setString(10, UtilPassword.criptografarSenha(usuario.getSenha()));
             ps.executeUpdate();
         }
     }
@@ -123,7 +124,7 @@ public class UsuarioDao {
     public boolean existsUserLogin(Usuario usuario) throws SQLException{
         PreparedStatement ps = conexao.prepareStatement("select 1 from usuario where login = ? and senha = ?");
         ps.setString(1, usuario.getLogin());
-        ps.setString(2, usuario.getSenha());
+        ps.setString(2, UtilPassword.criptografarSenha(usuario.getSenha()));
         try (ResultSet rs = ps.executeQuery()){
             return rs.next();
         } 
