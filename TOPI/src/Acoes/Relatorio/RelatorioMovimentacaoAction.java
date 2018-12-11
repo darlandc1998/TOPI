@@ -1,11 +1,11 @@
 package Acoes.Relatorio;
 
 import Dao.MovimentacaoDao;
-import Dao.TipoMovimentacaoDao;
+import Dao.UsuarioDao;
 import Modelos.Movimentacao;
-import Modelos.TipoMovimentacao;
 import Telas.Relatorios.RelatorioMovimentacaoInternalFrame;
 import Utils.UtilConnection;
+import Utils.UtilFile;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -46,12 +46,13 @@ public class RelatorioMovimentacaoAction implements ActionListener {
                         Integer codigoMovimentacao = (Integer) this.relatorioMovimentacao.getTableModel().getValueAt(row, 0);
                         MovimentacaoDao movimentacaoDao = new MovimentacaoDao(conexao);
                         Movimentacao movimentacao = new Movimentacao(codigoMovimentacao);
+                        UsuarioDao usuarioDao = new UsuarioDao(conexao);
                         
                         movimentacaoDao.delete(movimentacao);
                         this.relatorioMovimentacao.getListMovimentacoes().remove(movimentacao);
                         DefaultTableModel tb = (DefaultTableModel) this.relatorioMovimentacao.getTableModel();
                         tb.removeRow(row);
-
+                        this.relatorioMovimentacao.calcularSaldo(usuarioDao.getSalarioUserByEmail(UtilFile.lerArquivo(UtilFile.USER)));
                     } catch (SQLException e) {
                         Logger.getLogger(RelatorioMovimentacaoAction.class.getName()).log(Level.SEVERE, null, e);
                     }

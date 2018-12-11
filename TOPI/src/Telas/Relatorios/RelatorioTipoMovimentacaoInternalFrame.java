@@ -88,11 +88,14 @@ public class RelatorioTipoMovimentacaoInternalFrame extends javax.swing.JInterna
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPnlRelatorioTipoMovimentacao = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTbTipoMovimentacao = new javax.swing.JTable();
         jBtnExcluir = new javax.swing.JButton();
 
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        jPnlRelatorioTipoMovimentacao.setBackground(new java.awt.Color(245, 245, 245));
 
         jTbTipoMovimentacao.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -117,8 +120,10 @@ public class RelatorioTipoMovimentacaoInternalFrame extends javax.swing.JInterna
         });
         jScrollPane1.setViewportView(jTbTipoMovimentacao);
 
-        jBtnExcluir.setBackground(java.awt.Color.lightGray);
-        jBtnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/baseline_delete_forever_black_18dp.png"))); // NOI18N
+        jBtnExcluir.setBackground(new java.awt.Color(204, 0, 0));
+        jBtnExcluir.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        jBtnExcluir.setForeground(new java.awt.Color(255, 255, 255));
+        jBtnExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/baseline_delete_forever_white_18dp.png"))); // NOI18N
         jBtnExcluir.setText("Excluir");
         jBtnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,24 +131,34 @@ public class RelatorioTipoMovimentacaoInternalFrame extends javax.swing.JInterna
             }
         });
 
+        javax.swing.GroupLayout jPnlRelatorioTipoMovimentacaoLayout = new javax.swing.GroupLayout(jPnlRelatorioTipoMovimentacao);
+        jPnlRelatorioTipoMovimentacao.setLayout(jPnlRelatorioTipoMovimentacaoLayout);
+        jPnlRelatorioTipoMovimentacaoLayout.setHorizontalGroup(
+            jPnlRelatorioTipoMovimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnlRelatorioTipoMovimentacaoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jBtnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 599, Short.MAX_VALUE)
+        );
+        jPnlRelatorioTipoMovimentacaoLayout.setVerticalGroup(
+            jPnlRelatorioTipoMovimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnlRelatorioTipoMovimentacaoLayout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jBtnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 515, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBtnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+            .addComponent(jPnlRelatorioTipoMovimentacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jBtnExcluir)
-                .addContainerGap(15, Short.MAX_VALUE))
+            .addComponent(jPnlRelatorioTipoMovimentacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -163,6 +178,7 @@ public class RelatorioTipoMovimentacaoInternalFrame extends javax.swing.JInterna
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnExcluir;
+    private javax.swing.JPanel jPnlRelatorioTipoMovimentacao;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTbTipoMovimentacao;
     // End of variables declaration//GEN-END:variables

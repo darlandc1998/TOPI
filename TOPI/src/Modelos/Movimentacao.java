@@ -3,6 +3,7 @@ package Modelos;
 
 import Enums.EnumRepetirMovimentacao;
 import java.util.Date;
+import java.util.Objects;
 
 
 public class Movimentacao {
@@ -99,6 +100,31 @@ public class Movimentacao {
     @Override
     public String toString() {
         return "Movimentacao{" + "codigo=" + codigo + ", Descricao=" + Descricao + ", cdTipoMovimentacao=" + cdTipoMovimentacao + ", situacao=" + situacao + ", data=" + data + ", valor=" + valor + ", repetir=" + repetir + '}';
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 67 * hash + Objects.hashCode(this.codigo);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Movimentacao other = (Movimentacao) obj;
+        if (!Objects.equals(this.codigo, other.codigo)) {
+            return false;
+        }
+        return true;
     }
     
     

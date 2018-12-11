@@ -102,63 +102,96 @@ public class CadastroTipoMovimentacaoInternalFrame extends javax.swing.JInternal
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLblDescricao = new javax.swing.JLabel();
-        jTxtDescricao = new javax.swing.JTextField();
+        jPnlTipoMovimentacao = new javax.swing.JPanel();
+        jBtnSalvar = new javax.swing.JButton();
         jLblObservacao = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTxtObservacao = new javax.swing.JTextArea();
-        jBtnSalvar = new javax.swing.JButton();
+        jLblDescricao = new javax.swing.JLabel();
+        jTxtDescricao = new javax.swing.JTextField();
+        jLblDescricaoObrigatorio = new javax.swing.JLabel();
+        jLblObservacaoObrigatoria = new javax.swing.JLabel();
 
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         setTitle("Tipo Movimentação");
 
-        jLblDescricao.setText("Descrição");
+        jPnlTipoMovimentacao.setBackground(new java.awt.Color(245, 245, 245));
 
+        jBtnSalvar.setBackground(new java.awt.Color(0, 153, 102));
+        jBtnSalvar.setFont(new java.awt.Font("SansSerif", 1, 12)); // NOI18N
+        jBtnSalvar.setForeground(new java.awt.Color(255, 255, 255));
+        jBtnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/baseline_save_white_18dp.png"))); // NOI18N
+        jBtnSalvar.setText("Salvar");
+
+        jLblObservacao.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
         jLblObservacao.setText("Observação");
 
         jTxtObservacao.setColumns(20);
         jTxtObservacao.setRows(5);
         jScrollPane1.setViewportView(jTxtObservacao);
 
-        jBtnSalvar.setBackground(java.awt.Color.lightGray);
-        jBtnSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/baseline_save_black_18dp.png"))); // NOI18N
-        jBtnSalvar.setText("Salvar");
+        jLblDescricao.setFont(new java.awt.Font("SansSerif", 0, 12)); // NOI18N
+        jLblDescricao.setText("Descrição");
+
+        jLblDescricaoObrigatorio.setForeground(new java.awt.Color(255, 0, 0));
+        jLblDescricaoObrigatorio.setText("*");
+
+        jLblObservacaoObrigatoria.setBackground(new java.awt.Color(255, 0, 0));
+        jLblObservacaoObrigatoria.setForeground(new java.awt.Color(255, 0, 0));
+        jLblObservacaoObrigatoria.setText("*");
+
+        javax.swing.GroupLayout jPnlTipoMovimentacaoLayout = new javax.swing.GroupLayout(jPnlTipoMovimentacao);
+        jPnlTipoMovimentacao.setLayout(jPnlTipoMovimentacaoLayout);
+        jPnlTipoMovimentacaoLayout.setHorizontalGroup(
+            jPnlTipoMovimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnlTipoMovimentacaoLayout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addGroup(jPnlTipoMovimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jBtnSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPnlTipoMovimentacaoLayout.createSequentialGroup()
+                        .addGroup(jPnlTipoMovimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPnlTipoMovimentacaoLayout.createSequentialGroup()
+                                .addComponent(jLblDescricao)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLblDescricaoObrigatorio))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPnlTipoMovimentacaoLayout.createSequentialGroup()
+                                .addComponent(jLblObservacao)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLblObservacaoObrigatoria))
+                            .addComponent(jTxtDescricao, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(0, 6, Short.MAX_VALUE)))
+                .addGap(19, 19, 19))
+        );
+        jPnlTipoMovimentacaoLayout.setVerticalGroup(
+            jPnlTipoMovimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnlTipoMovimentacaoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPnlTipoMovimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLblDescricao)
+                    .addComponent(jLblDescricaoObrigatorio))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTxtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPnlTipoMovimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLblObservacao)
+                    .addComponent(jLblObservacaoObrigatoria))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jBtnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(25, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jBtnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jLblDescricao)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLblObservacao)
-                                .addGap(10, 10, 10)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1)
-                            .addComponent(jTxtDescricao, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE))))
-                .addContainerGap(34, Short.MAX_VALUE))
+            .addComponent(jPnlTipoMovimentacao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLblDescricao)
-                    .addComponent(jTxtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLblObservacao)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                .addComponent(jBtnSalvar)
-                .addContainerGap())
+            .addComponent(jPnlTipoMovimentacao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -168,7 +201,10 @@ public class CadastroTipoMovimentacaoInternalFrame extends javax.swing.JInternal
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBtnSalvar;
     private javax.swing.JLabel jLblDescricao;
+    private javax.swing.JLabel jLblDescricaoObrigatorio;
     private javax.swing.JLabel jLblObservacao;
+    private javax.swing.JLabel jLblObservacaoObrigatoria;
+    private javax.swing.JPanel jPnlTipoMovimentacao;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTxtDescricao;
     private javax.swing.JTextArea jTxtObservacao;

@@ -3,10 +3,11 @@ package Enums;
 
 public enum EnumRepetirMovimentacao {
 
-    DIARIAMENTE(0,"D","Diariamente"),
-    SEMANALMENTE(1,"S","Semanalmente"),
-    MENSALMENTE(2,"M","Mensalmente"),
-    ANUALMENTE(3,"A","Anualmente");
+    NAO_REPETE(0,"N","Não Repete"),
+    DIARIAMENTE(1,"D","Diariamente"),
+    SEMANALMENTE(2,"S","Semanalmente"),
+    MENSALMENTE(3,"M","Mensalmente"),
+    ANUALMENTE(4,"A","Anualmente");
     
     private Integer index;
     private String key, description;
