@@ -51,11 +51,13 @@ public class RelatorioMovimentacaoInternalFrame extends javax.swing.JInternalFra
             MovimentacaoDao movimentacaoDao = new MovimentacaoDao(conexao);
             UsuarioDao usuarioDao = new UsuarioDao(conexao);
             
-            setListMovimentacoes(movimentacaoDao.getList("codigo_usuario = "+usuarioDao.getIdUserByEmail(UtilFile.lerArquivo(UtilFile.USER)),"data desc"));
+            String login = UtilFile.lerArquivo(UtilFile.USER);
+            
+            setListMovimentacoes(movimentacaoDao.getList("codigo_usuario = "+usuarioDao.getIdUserByEmail(login),"data desc"));
             getListMovimentacoes().forEach((mov) -> {
                 tb.addRow(new Object[]{mov.getCodigo(), mov.getTipoMovimentacaoDescricao(), mov.getSituacao().equals("D") ? "Despesa" : "Receita",mov.getDescricao(), UtilDate.getDateFormatted(mov.getData()), UtilNumeric.getValueFormattedMoney(mov.getValor())});
             });
-            calcularSaldo();
+            calcularSaldo(usuarioDao.getSalarioUserByEmail(login));
         } catch (SQLException e) {
             Logger.getLogger(RelatorioMovimentacaoInternalFrame.class.getName()).log(Level.SEVERE, null, e);
         } finally {
@@ -79,13 +81,13 @@ public class RelatorioMovimentacaoInternalFrame extends javax.swing.JInternalFra
         return jTbMovimentacao.getModel();
     }
     
-    public void calcularSaldo(){
-        Double saldo = 0d;
+    public void calcularSaldo(Double salario){
+        Double saldo = salario;
         for (Movimentacao mov: getListMovimentacoes()){
             saldo = saldo + (mov.getSituacao().equals("D") ? (mov.getValor() * -1) : mov.getValor());
         }
         jTxtSaldo.setText(UtilNumeric.getValueFormattedMoney(saldo));
-        jTxtSaldo.setForeground(saldo > 0 ? Color.green : Color.RED);        
+        jTxtSaldo.setForeground(saldo > 0 ? Color.BLACK : Color.RED);        
     }
     
     @SuppressWarnings("unchecked")
