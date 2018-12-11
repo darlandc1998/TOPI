@@ -35,7 +35,7 @@ public class UsuarioDao {
             ps.setString(6, usuario.getCpf());
             ps.setString(7, usuario.getEstadoCivil());
             ps.setDouble(8, usuario.getRendaMensal());
-            ps.setString(9, usuario.getLogin());
+            ps.setString(9, usuario.getLogin().replace(".", "").replace("-", ""));
             ps.setString(10, UtilPassword.criptografarSenha(usuario.getSenha()));
             ps.executeUpdate();
         }
@@ -48,7 +48,7 @@ public class UsuarioDao {
             ps.setString(3, usuario.getEmail());
             ps.setTimestamp(4, new java.sql.Timestamp(usuario.getDtNascimento().getTime()));
             ps.setString(5, usuario.getSexo());
-            ps.setString(6, usuario.getCpf());
+            ps.setString(6, usuario.getCpf().replace(".", "").replace("-", ""));
             ps.setString(7, usuario.getEstadoCivil());
             ps.setDouble(8, usuario.getRendaMensal());            
             ps.setInt(9, usuario.getCodigo());
@@ -136,6 +136,28 @@ public class UsuarioDao {
         try (ResultSet rs = ps.executeQuery()){
             if (rs.next()){
                 return rs.getInt("codigo");
+            }
+        } 
+        return null;
+    }
+     
+    public boolean isPrimeiraVezLogado(String login) throws SQLException{
+        PreparedStatement ps = conexao.prepareStatement("select sexo from usuario where login = ?");
+        ps.setString(1, login);
+        try (ResultSet rs = ps.executeQuery()){
+            if (rs.next()){
+                return rs.getString("sexo") == null;
+            }
+        } 
+        return false;
+    } 
+    
+    public Double getSalarioUserByEmail(String login) throws SQLException{
+        PreparedStatement ps = conexao.prepareStatement("select renda_mensal from usuario where login = ?");
+        ps.setString(1, login);
+        try (ResultSet rs = ps.executeQuery()){
+            if (rs.next()){
+                return rs.getDouble("renda_mensal");
             }
         } 
         return null;

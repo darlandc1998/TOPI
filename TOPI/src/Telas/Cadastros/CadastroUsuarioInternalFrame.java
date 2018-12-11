@@ -64,7 +64,6 @@ public class CadastroUsuarioInternalFrame extends javax.swing.JInternalFrame {
         jRbnMasculino = new javax.swing.JRadioButton();
         jRbnFeminino = new javax.swing.JRadioButton();
         jLblCpf = new javax.swing.JLabel();
-        jTxtCpf = new javax.swing.JTextField();
         jLblEstadoCivil = new javax.swing.JLabel();
         jCbxEstadoCivil = new javax.swing.JComboBox<>();
         jLblRendaMensal = new javax.swing.JLabel();
@@ -77,6 +76,7 @@ public class CadastroUsuarioInternalFrame extends javax.swing.JInternalFrame {
         jLblDataNascimentoObrigatorio = new javax.swing.JLabel();
         jLblEstadoCivilObrigatorio = new javax.swing.JLabel();
         jLblRendaMensalObrigatorio = new javax.swing.JLabel();
+        jTxtCpf = new javax.swing.JFormattedTextField();
 
         setBackground(new java.awt.Color(204, 204, 204));
         setBorder(new javax.swing.border.MatteBorder(null));
@@ -172,62 +172,60 @@ public class CadastroUsuarioInternalFrame extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jBtnSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLblNome)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLblNomeObrigatorio))
-                                    .addComponent(jTxtNomeCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLblCpf)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLblCpfObrigatorio))
-                                    .addComponent(jTxtCpf))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jRbnMasculino)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jRbnFeminino))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLblSexo)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jLblSexoObrigatorio)))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLblDataNascimento)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jLblDataNascimentoObrigatorio))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLblEmail)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jLblEmailObrigatorio))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLblSobrenome)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jLblSobrenomeObrigatorio))
-                                .addComponent(jTxtSobrenome)
-                                .addComponent(jTxtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
-                                .addComponent(jTxtDtNascimento)))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jCbxEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLblEstadoCivil)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jLblEstadoCivilObrigatorio)))
-                            .addGap(15, 15, 15)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLblRendaMensal)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jLblRendaMensalObrigatorio)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 236, Short.MAX_VALUE))
-                                .addComponent(jTxtRendaMensal)))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLblNome)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLblNomeObrigatorio))
+                            .addComponent(jTxtNomeCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLblCpf)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLblCpfObrigatorio))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jRbnMasculino)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jRbnFeminino))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLblSexo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLblSexoObrigatorio))
+                            .addComponent(jTxtCpf))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLblDataNascimento)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLblDataNascimentoObrigatorio))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLblEmail)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLblEmailObrigatorio))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLblSobrenome)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLblSobrenomeObrigatorio))
+                            .addComponent(jTxtSobrenome)
+                            .addComponent(jTxtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
+                            .addComponent(jTxtDtNascimento)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jCbxEstadoCivil, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLblEstadoCivil)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLblEstadoCivilObrigatorio)))
+                        .addGap(15, 15, 15)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLblRendaMensal)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLblRendaMensalObrigatorio)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 236, Short.MAX_VALUE))
+                            .addComponent(jTxtRendaMensal))))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -250,9 +248,9 @@ public class CadastroUsuarioInternalFrame extends javax.swing.JInternalFrame {
                     .addComponent(jLblCpfObrigatorio)
                     .addComponent(jLblEmailObrigatorio))
                 .addGap(3, 3, 3)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTxtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTxtCpf, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTxtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(jTxtCpf, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -326,7 +324,6 @@ public class CadastroUsuarioInternalFrame extends javax.swing.JInternalFrame {
         String dtNascimento = jTxtDtNascimento.getText();
         String cpf = jTxtCpf.getText();
         Double rendaMensal = Double.parseDouble(jTxtRendaMensal.getText().replace(".", "").replace(",", "."));
-
         String messageError = null;
 
         if (rendaMensal <= 0){
@@ -391,13 +388,17 @@ public class CadastroUsuarioInternalFrame extends javax.swing.JInternalFrame {
             formatter.setAllowsInvalid(false);
             jTxtRendaMensal.setFormatterFactory(new DefaultFormatterFactory(formatter));
             jTxtRendaMensal.setValue(0.00);
+            
+            MaskFormatter cpfMask = new MaskFormatter("###.###.###-##");
+            cpfMask.install(jTxtCpf);
+            
         } catch (ParseException e) {
             UtilLog.escreverExcecao(e);
         }
 
     }
     
-    public void carregarPerfil(){
+    public final void carregarPerfil(){
         Connection conexao = UtilConnection.getConnection();
         try {
             UsuarioDao usuarioDao = new UsuarioDao(conexao);
@@ -409,7 +410,8 @@ public class CadastroUsuarioInternalFrame extends javax.swing.JInternalFrame {
             jTxtDtNascimento.setText(new SimpleDateFormat("dd/MM/yyyy").format(usuario.getDtNascimento()));
             jRbnMasculino.setSelected(usuario.getSexo().equals("M"));
             jRbnFeminino.setSelected(usuario.getSexo().equals("F"));
-            jTxtRendaMensal.setText(usuario.getRendaMensal().toString());            
+            jTxtRendaMensal.setText(usuario.getRendaMensal().toString().replace(".", ",")); 
+            jCbxEstadoCivil.setSelectedItem(usuario.getEstadoCivil());
         } catch (Exception e) {
         } finally{
             try {
@@ -444,7 +446,7 @@ public class CadastroUsuarioInternalFrame extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton jRbnFeminino;
     private javax.swing.JRadioButton jRbnMasculino;
-    private javax.swing.JTextField jTxtCpf;
+    private javax.swing.JFormattedTextField jTxtCpf;
     private javax.swing.JFormattedTextField jTxtDtNascimento;
     private javax.swing.JTextField jTxtEmail;
     private javax.swing.JTextField jTxtNomeCliente;

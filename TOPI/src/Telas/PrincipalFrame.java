@@ -1,17 +1,34 @@
 package Telas;//GEN-FIRST:event_jMnCadastroTipoMovimentacaoMouseClicked
 //GEN-LAST:event_jMnCadastroTipoMovimentacaoMouseClicked
+import Dao.UsuarioDao;
 import Telas.Cadastros.CadastroUsuarioInternalFrame;
 import Telas.Cadastros.CadastroTipoMovimentacaoInternalFrame;
 import Telas.Cadastros.CadastroMovimentacaoInternalFrame;
 import Telas.Relatorios.RelatorioMovimentacaoInternalFrame;
 import Telas.Relatorios.RelatorioTipoMovimentacaoInternalFrame;
+import Utils.UtilConnection;
+import Utils.UtilFile;
 import Utils.UtilLog;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class PrincipalFrame extends javax.swing.JFrame {
 
     public PrincipalFrame() {
         initComponents();
         UtilLog.escreverLog("entrou no sistema");
+        
+        try (Connection conexao = UtilConnection.getConnection()){
+            if (new UsuarioDao(conexao).isPrimeiraVezLogado(UtilFile.lerArquivo(UtilFile.USER))){
+                openInternalFrameCadastroUsuario();
+                JOptionPane.showMessageDialog(null,"Bem-vindo! Para continuar utilizando o sistema finalize seu cadastro!");
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(PrincipalFrame.class.getName()).log(Level.SEVERE, null, e);
+        }
     }
 
     @SuppressWarnings("unchecked")
