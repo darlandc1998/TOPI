@@ -83,6 +83,11 @@ public class MovimentacaoDao {
     }
     
     public Movimentacao getObject(Movimentacao movimentacao) throws SQLException{
+        
+        if (movimentacao.getCodigo() == null){
+            return null;
+        }
+        
         PreparedStatement ps = conexao.prepareStatement("select * from movimentacao where codigo = ?");
         ps.setInt(1, movimentacao.getCodigo());
         try (ResultSet rs = ps.executeQuery()) {

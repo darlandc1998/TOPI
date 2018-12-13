@@ -64,6 +64,11 @@ public class TipoMovimentacaoDao {
     }
     
     public TipoMovimentacao getObject(TipoMovimentacao tipoMovimentacao) throws SQLException{
+        
+        if (tipoMovimentacao.getCodigo() == null){
+            return null;
+        }
+        
         PreparedStatement ps = conexao.prepareStatement("select * from tipo_movimentacao where codigo = ?");
         ps.setInt(1, tipoMovimentacao.getCodigo());
         try (ResultSet rs = ps.executeQuery()) {
