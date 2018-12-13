@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 public class CadastroMovimentacaoAction implements ActionListener {
 
     public static final String COD_SALVAR_MOVIMENTACAO = "SM";
+    public static final String COD_BUSCAR_MOVIMENTACAO = "BM";
 
     private CadastroMovimentacaoInternalFrame movimentacaoInternalFrame;
 
@@ -28,11 +29,6 @@ public class CadastroMovimentacaoAction implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         String action = e.getActionCommand();
-        Movimentacao movimentacao = movimentacaoInternalFrame.getObject();
-
-        if (movimentacao == null) {
-            return;
-        }
 
         Connection conexao = UtilConnection.getConnection();
         try {
@@ -40,11 +36,43 @@ public class CadastroMovimentacaoAction implements ActionListener {
             UsuarioDao usuarioDao = new UsuarioDao(conexao);
             switch (action) {
                 case COD_SALVAR_MOVIMENTACAO:
+                    Movimentacao movimentacao = movimentacaoInternalFrame.getObject();
+
+                    if (movimentacao == null) {
+                        return;
+                    }
+
                     movimentacao.setCdUsuario(usuarioDao.getIdUserByEmail(UtilFile.lerArquivo(UtilFile.USER)));
-                    movimentacaoDao.insert(movimentacao);
+                    
+                    if (movimentacaoDao.getObject(movimentacao) == null){
+                        movimentacaoDao.insert(movimentacao);
+                        JOptionPane.showMessageDialog(null, "Movimentação inserida com sucesso!");
+                    } else {
+                        movimentacaoDao.update(movimentacao);
+                        JOptionPane.showMessageDialog(null, "Movimentação atualizada com sucesso!");
+                    }
+                    
                     movimentacaoInternalFrame.resetFiels();
-                    JOptionPane.showMessageDialog(null, "Movimentação inserida com sucesso!");
+                    movimentacaoInternalFrame.enableTxtCodigo();
+                    
                     UtilLog.escreverLog("salvou movimentação");
+                    break;
+                case COD_BUSCAR_MOVIMENTACAO:
+                    Integer codigoMov = movimentacaoInternalFrame.getCodigoEdicao();
+                    
+                    if (codigoMov == null){
+                        return;
+                    }
+                    
+                    Movimentacao movimentacaoEdit = movimentacaoDao.getObject(new Movimentacao(codigoMov));
+                    
+                    if(movimentacaoEdit != null){
+                        movimentacaoInternalFrame.popularObjeto(movimentacaoEdit);
+                        movimentacaoInternalFrame.disableTxtCodigo();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Movimentação não encontrada!");
+                    }
+                    
                     break;
             }
         } catch (SQLException ex) {

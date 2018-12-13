@@ -20,7 +20,7 @@ public class PrincipalFrame extends javax.swing.JFrame {
     public PrincipalFrame() {
         initComponents();
         UtilLog.escreverLog("entrou no sistema");
-        
+        setTitle("Controle de despesas");
         try (Connection conexao = UtilConnection.getConnection()){
             if (new UsuarioDao(conexao).isPrimeiraVezLogado(UtilFile.lerArquivo(UtilFile.USER))){
                 openInternalFrameCadastroUsuario();

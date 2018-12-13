@@ -12,6 +12,7 @@ import Enums.EnumRepetirMovimentacao;
 import Modelos.Movimentacao;
 import Modelos.TipoMovimentacao;
 import Utils.UtilConnection;
+import Utils.UtilDate;
 import Utils.UtilFile;
 import Utils.UtilLog;
 import java.awt.Container;
@@ -50,6 +51,8 @@ public class CadastroMovimentacaoInternalFrame extends javax.swing.JInternalFram
         
         jBtnSalvar.addActionListener(movimentacaoInternalFrame);
         jBtnSalvar.setActionCommand(CadastroMovimentacaoAction.COD_SALVAR_MOVIMENTACAO);
+        jBtnBuscar.addActionListener(movimentacaoInternalFrame);
+        jBtnBuscar.setActionCommand(CadastroMovimentacaoAction.COD_BUSCAR_MOVIMENTACAO);
         
         addMasks();
         addTipoMovimentacoes();
@@ -61,6 +64,7 @@ public class CadastroMovimentacaoInternalFrame extends javax.swing.JInternalFram
         String descricao = jTxtDescricao.getText();
         Double valor = Double.parseDouble(jTxtValor.getText().replace(".", "").replace(",", "."));
         String data = jTxtData.getText();
+        String codigo = jTxtCodigo.getText();
         
         String messageError = null;
         
@@ -83,21 +87,45 @@ public class CadastroMovimentacaoInternalFrame extends javax.swing.JInternalFram
         
                 
         Movimentacao movimentacao = new Movimentacao();
+        movimentacao.setCodigo(codigo != null && !codigo.trim().isEmpty() ? Integer.parseInt(codigo) : null);
         movimentacao.setValor(valor);
         movimentacao.setDescricao(descricao);
         movimentacao.setCdTipoMovimentacao(getListTipoMovimentacoes().get(jCbxTipoMovimentacao.getSelectedIndex()).getCodigo());
-        movimentacao.setData(new Date(data));
+        movimentacao.setData(UtilDate.getDateString(data));
         movimentacao.setRepetir(EnumRepetirMovimentacao.values()[jCbxRepetir.getSelectedIndex()]);
         movimentacao.setSituacao(jRbnDespesa.isSelected() ? "D" : "R");
         return movimentacao;
     }
     
+    public Integer getCodigoEdicao(){
+        String codigo = jTxtCodigo.getText();
+        
+        if (codigo.trim().isEmpty()){
+            JOptionPane.showMessageDialog(null, "Digite um código para buscar a movimentação!", null, JOptionPane.WARNING_MESSAGE);
+            return null;
+        }
+        
+        
+        return Integer.parseInt(codigo);
+    }
+    
     public void resetFiels(){
+        jTxtCodigo.setText(null);
         jTxtData.setText(null);
         jTxtDescricao.setText(null);
         jTxtValor.setValue(0.00);
         jCbxRepetir.setSelectedIndex(0);
         jCbxTipoMovimentacao.setSelectedIndex(0);
+    }
+    
+    public void disableTxtCodigo(){
+        jTxtCodigo.setEditable(false);
+        jTxtCodigo.setEnabled(false);
+    }
+    
+    public void enableTxtCodigo(){
+        jTxtCodigo.setEditable(true);
+        jTxtCodigo.setEnabled(true);
     }
     
     private void addMasks() {
@@ -137,6 +165,16 @@ public class CadastroMovimentacaoInternalFrame extends javax.swing.JInternalFram
             }
         }
     }
+    
+    public void popularObjeto(Movimentacao movimentacao){
+        jTxtDescricao.setText(movimentacao.getDescricao());
+        jTxtData.setText(UtilDate.getDateFormatted(movimentacao.getData()));
+        jTxtValor.setText(String.valueOf(movimentacao.getValor()).replace(".", ","));
+        jRbnDespesa.setSelected(movimentacao.getSituacao().equals("D"));
+        jRbnBeneficio.setSelected(movimentacao.getSituacao().equals("R"));
+        jCbxRepetir.setSelectedItem(movimentacao.getRepetir().getDescription());
+        jCbxTipoMovimentacao.setSelectedItem(getListTipoMovimentacoes().get(getListTipoMovimentacoes().indexOf(new TipoMovimentacao(movimentacao.getCdTipoMovimentacao()))).getDescricao());
+    }
 
     public List<TipoMovimentacao> getListTipoMovimentacoes() {
         return listTipoMovimentacoes;
@@ -171,6 +209,9 @@ public class CadastroMovimentacaoInternalFrame extends javax.swing.JInternalFram
         jLblValorObrigatorio = new javax.swing.JLabel();
         jLblDataObrigatoria = new javax.swing.JLabel();
         jLblRepetirObrigatorio = new javax.swing.JLabel();
+        jLblCodigo = new javax.swing.JLabel();
+        jTxtCodigo = new javax.swing.JTextField();
+        jBtnBuscar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(188, 51, 67));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -231,6 +272,11 @@ public class CadastroMovimentacaoInternalFrame extends javax.swing.JInternalFram
         jLblRepetirObrigatorio.setForeground(new java.awt.Color(255, 0, 0));
         jLblRepetirObrigatorio.setText("*");
 
+        jLblCodigo.setText("Código");
+
+        jBtnBuscar.setBackground(new java.awt.Color(0, 102, 102));
+        jBtnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/baseline_search_white_18dp.png"))); // NOI18N
+
         javax.swing.GroupLayout jPnlMovimentacaoLayout = new javax.swing.GroupLayout(jPnlMovimentacao);
         jPnlMovimentacao.setLayout(jPnlMovimentacaoLayout);
         jPnlMovimentacaoLayout.setHorizontalGroup(
@@ -257,28 +303,44 @@ public class CadastroMovimentacaoInternalFrame extends javax.swing.JInternalFram
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLblRepetirObrigatorio))
                     .addComponent(jCbxRepetir, 0, 304, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPnlMovimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPnlMovimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPnlMovimentacaoLayout.createSequentialGroup()
-                        .addComponent(jLblTipoMovimentacao)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLblTipoObrigatorio))
-                    .addComponent(jCbxTipoMovimentacao, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPnlMovimentacaoLayout.createSequentialGroup()
-                        .addComponent(jLblData)
+                        .addGroup(jPnlMovimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jCbxTipoMovimentacao, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPnlMovimentacaoLayout.createSequentialGroup()
+                                .addComponent(jLblData)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLblDataObrigatoria))
+                            .addComponent(jTxtData)
+                            .addComponent(jBtnSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
+                            .addGroup(jPnlMovimentacaoLayout.createSequentialGroup()
+                                .addComponent(jLblTipoMovimentacao)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPnlMovimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLblCodigo)
+                                    .addComponent(jLblTipoObrigatorio)))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnlMovimentacaoLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                        .addComponent(jTxtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLblDataObrigatoria))
-                    .addComponent(jTxtData)
-                    .addComponent(jBtnSalvar, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE))
-                .addContainerGap(22, Short.MAX_VALUE))
+                        .addComponent(jBtnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         jPnlMovimentacaoLayout.setVerticalGroup(
             jPnlMovimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPnlMovimentacaoLayout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPnlMovimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jRbnBeneficio)
-                    .addComponent(jRbnDespesa, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnlMovimentacaoLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(jPnlMovimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jRbnDespesa)
+                            .addComponent(jRbnBeneficio)
+                            .addComponent(jTxtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBtnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPnlMovimentacaoLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLblCodigo)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPnlMovimentacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLblDescricao)
@@ -331,9 +393,11 @@ public class CadastroMovimentacaoInternalFrame extends javax.swing.JInternalFram
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup btnGroupSituacao;
+    private javax.swing.JButton jBtnBuscar;
     private javax.swing.JButton jBtnSalvar;
     private javax.swing.JComboBox<String> jCbxRepetir;
     private javax.swing.JComboBox<String> jCbxTipoMovimentacao;
+    private javax.swing.JLabel jLblCodigo;
     private javax.swing.JLabel jLblData;
     private javax.swing.JLabel jLblDataObrigatoria;
     private javax.swing.JLabel jLblDescricao;
@@ -347,6 +411,7 @@ public class CadastroMovimentacaoInternalFrame extends javax.swing.JInternalFram
     private javax.swing.JPanel jPnlMovimentacao;
     private javax.swing.JRadioButton jRbnBeneficio;
     private javax.swing.JRadioButton jRbnDespesa;
+    private javax.swing.JTextField jTxtCodigo;
     private javax.swing.JFormattedTextField jTxtData;
     private javax.swing.JTextField jTxtDescricao;
     private javax.swing.JFormattedTextField jTxtValor;

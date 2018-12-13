@@ -70,7 +70,7 @@ public class MovimentacaoDao {
                 movimentacao.setCdTipoMovimentacao(rs.getInt("codigo_tipo_movimentacao"));
                 movimentacao.setData(rs.getTimestamp("data"));
                 movimentacao.setDescricao(rs.getString("descricao"));
-                movimentacao.setRepetir(EnumRepetirMovimentacao.ANUALMENTE);
+                movimentacao.setRepetir(EnumRepetirMovimentacao.getByKey(rs.getString("repetir")));
                 movimentacao.setSituacao(rs.getString("situacao"));
                 movimentacao.setValor(rs.getDouble("valor"));
                 movimentacao.setTipoMovimentacaoDescricao(rs.getString("descricao_tipo_movimentacao"));
@@ -93,7 +93,7 @@ public class MovimentacaoDao {
                 movimentacaoQuery.setCdTipoMovimentacao(rs.getInt("codigo_tipo_movimentacao"));
                 movimentacaoQuery.setData(rs.getTimestamp("data"));
                 movimentacaoQuery.setDescricao(rs.getString("descricao"));
-                movimentacaoQuery.setRepetir(EnumRepetirMovimentacao.ANUALMENTE);
+                movimentacaoQuery.setRepetir(EnumRepetirMovimentacao.getByKey(rs.getString("repetir")));
                 movimentacaoQuery.setSituacao(rs.getString("situacao"));
                 movimentacaoQuery.setValor(rs.getDouble("valor"));
                 return movimentacaoQuery;

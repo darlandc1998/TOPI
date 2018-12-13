@@ -4,6 +4,7 @@ import Acoes.Cadastro.CadastroUsuarioAction;
 import Dao.UsuarioDao;
 import Modelos.Usuario;
 import Utils.UtilConnection;
+import Utils.UtilDate;
 import Utils.UtilFile;
 import Utils.UtilLog;
 import java.awt.Container;
@@ -359,7 +360,7 @@ public class CadastroUsuarioInternalFrame extends javax.swing.JInternalFrame {
         cliente.setNome(nmCliente);
         cliente.setSobrenome(sobrenomeCliente);
         cliente.setEmail(emailCliente);
-        cliente.setDtNascimento(new Date(dtNascimento));
+        cliente.setDtNascimento(UtilDate.getDateString(dtNascimento));
         cliente.setSexo(jRbnMasculino.isSelected() ? "M" : "F");
         cliente.setCpf(cpf);
         cliente.setEstadoCivil(jCbxEstadoCivil.getItemAt(jCbxEstadoCivil.getSelectedIndex()));        

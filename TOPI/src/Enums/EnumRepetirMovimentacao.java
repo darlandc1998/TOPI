@@ -42,7 +42,14 @@ public enum EnumRepetirMovimentacao {
         this.description = description;
     }
     
-    
+    public static EnumRepetirMovimentacao getByKey(String key){
+        for (EnumRepetirMovimentacao mov: EnumRepetirMovimentacao.values()){
+            if (mov.key.equals(key)){
+                return mov;
+            }
+        }
+        return null;
+    }
     
     
 }
